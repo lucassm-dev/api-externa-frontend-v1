@@ -276,10 +276,10 @@
     "semantic_hash": "f136ab79f4691c4b16ab6c3cfcc54efd"
   },
   "onpspec.config.json": {
-    "mtime": 1788310220.966073,
-    "seen": 1788321443.3698502,
-    "ast_hash": "be36bfe93837cf61d6c60bcfcbf891f4",
-    "semantic_hash": "be36bfe93837cf61d6c60bcfcbf891f4"
+    "mtime": 1788392713.5887156,
+    "seen": 1788392972.489228,
+    "ast_hash": "654a5b81bd9ce16ac21003cc79f55e6d",
+    "semantic_hash": "654a5b81bd9ce16ac21003cc79f55e6d"
   },
   "package.json": {
     "mtime": 1788310220.994573,
@@ -516,16 +516,16 @@
     "semantic_hash": "4ae63004fdf4c5bde53d1fd5c669747b"
   },
   "CLAUDE.md": {
-    "mtime": 1788321575.1020768,
-    "seen": 1788391039.324092,
-    "ast_hash": "1cca1cc71265c448dfd8bf6e13cd0888",
-    "semantic_hash": "1cca1cc71265c448dfd8bf6e13cd0888"
+    "mtime": 1788391806.289131,
+    "seen": 1788392972.4892411,
+    "ast_hash": "1c8c514af2a04c5a647e4f026b57aa96",
+    "semantic_hash": "1c8c514af2a04c5a647e4f026b57aa96"
   },
   "README.md": {
-    "mtime": 1788310166.3373282,
-    "seen": 1788321443.369864,
-    "ast_hash": "a21a389f947fa6c556fd5973029e9698",
-    "semantic_hash": "a21a389f947fa6c556fd5973029e9698"
+    "mtime": 1788391807.7618763,
+    "seen": 1788392972.489242,
+    "ast_hash": "052adc8e00e2cd22f0565b2a142b725f",
+    "semantic_hash": "052adc8e00e2cd22f0565b2a142b725f"
   },
   "docs/design-system-fef-invest.md": {
     "mtime": 1788310200.9718125,
@@ -624,10 +624,10 @@
     "semantic_hash": "b798fd49090a5122fbd8dad3b1907bd1"
   },
   ".spec/verification/sinais.json": {
-    "mtime": 1788389923.843586,
-    "seen": 1788391039.324073,
-    "ast_hash": "6ea3244fc97399efb8f555ea04539f27",
-    "semantic_hash": "6ea3244fc97399efb8f555ea04539f27"
+    "mtime": 1788392805.2489748,
+    "seen": 1788392972.489224,
+    "ast_hash": "4a74255ecc35c0386ef8b9471780741e",
+    "semantic_hash": "4a74255ecc35c0386ef8b9471780741e"
   },
   ".spec/features/acoes/spec.md": {
     "mtime": 1788323110.098266,
@@ -636,10 +636,10 @@
     "semantic_hash": "aab4c0c1336fc306eb923e1104d032c8"
   },
   ".spec/features/acoes/tasks.md": {
-    "mtime": 1788389854.8654356,
-    "seen": 1788391039.3240871,
-    "ast_hash": "aa479eb88ea4c825d7cc2f9e7a4ebf3f",
-    "semantic_hash": "aa479eb88ea4c825d7cc2f9e7a4ebf3f"
+    "mtime": 1788392840.4330666,
+    "seen": 1788392972.489239,
+    "ast_hash": "6fa3d62fecca74f73ad14a1f0b595018",
+    "semantic_hash": "6fa3d62fecca74f73ad14a1f0b595018"
   },
   ".spec/features/carteiras/design.md": {
     "mtime": 1788388551.2227437,
@@ -666,28 +666,28 @@
     "semantic_hash": "b2a4954b83db7c80512899ff128639aa"
   },
   ".spec/features/corretoras/tasks.md": {
-    "mtime": 1788389836.7663581,
-    "seen": 1788391039.324089,
-    "ast_hash": "0cd19d04e9ec270c78d8e480aa7ebb56",
-    "semantic_hash": "0cd19d04e9ec270c78d8e480aa7ebb56"
+    "mtime": 1788391914.445797,
+    "seen": 1788392972.4892402,
+    "ast_hash": "8b4f61e12e013ef26d6c4689deb5ffa1",
+    "semantic_hash": "8b4f61e12e013ef26d6c4689deb5ffa1"
   },
   ".spec/features/dashboard/spec.md": {
-    "mtime": 1788389385.8988924,
-    "seen": 1788391039.324089,
-    "ast_hash": "c433c0a4b54957ee1dda24e8056caa1a",
-    "semantic_hash": "c433c0a4b54957ee1dda24e8056caa1a"
+    "mtime": 1788392141.6945107,
+    "seen": 1788392972.4892402,
+    "ast_hash": "22dab9f904b9ddc73a9e897b86fcdcd0",
+    "semantic_hash": "22dab9f904b9ddc73a9e897b86fcdcd0"
   },
   ".spec/features/dashboard/tasks.md": {
-    "mtime": 1788389907.867925,
-    "seen": 1788391039.324089,
-    "ast_hash": "70df5eea94a5a4881573f771c1967674",
-    "semantic_hash": "70df5eea94a5a4881573f771c1967674"
+    "mtime": 1788392194.4932816,
+    "seen": 1788392972.4892402,
+    "ast_hash": "9301320ec1ffddca5ac3d6bbd941bd34",
+    "semantic_hash": "9301320ec1ffddca5ac3d6bbd941bd34"
   },
   ".spec/features/fundacao/spec.md": {
-    "mtime": 1788322967.551365,
-    "seen": 1788391039.32409,
-    "ast_hash": "7db2813154e563d7416c9b9436a71f85",
-    "semantic_hash": "7db2813154e563d7416c9b9436a71f85"
+    "mtime": 1788392155.8416243,
+    "seen": 1788392972.4892411,
+    "ast_hash": "eefab071de7dd3782fa8a50f56044396",
+    "semantic_hash": "eefab071de7dd3782fa8a50f56044396"
   },
   ".spec/features/fundacao/tasks.md": {
     "mtime": 1788389785.544882,
@@ -726,9 +726,9 @@
     "semantic_hash": "0dcd3574c8a5572ef3dc32ebc0773753"
   },
   "docs/superpowers/specs/2026-09-02-frontend-mvp-design.md": {
-    "mtime": 1788322790.2881358,
-    "seen": 1788391039.3240929,
-    "ast_hash": "b0917ac8a491f20310f2c901f028fd24",
-    "semantic_hash": "b0917ac8a491f20310f2c901f028fd24"
+    "mtime": 1788392232.5955436,
+    "seen": 1788392972.489242,
+    "ast_hash": "46c9be6f611bb34766f87e37d35db4f1",
+    "semantic_hash": "46c9be6f611bb34766f87e37d35db4f1"
   }
 }
