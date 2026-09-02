@@ -1,0 +1,251 @@
+{
+  "runId": "api-externa-frontend-v1-fundacao-mtkqxav1",
+  "feature": "fundacao",
+  "agent": "claude",
+  "modo": "paralelo",
+  "paralelizar": [
+    "T-001",
+    "T-003",
+    "T-004",
+    "T-005",
+    "T-008"
+  ],
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-09-02 23:47",
+  "branchTrabalho": "spec/fundacao",
+  "baseDir": ".spec/features/fundacao",
+  "specDir": ".spec",
+  "repoName": "api-externa-frontend-v1",
+  "logsDir": "../onp-worktrees/api-externa-frontend-v1-fundacao-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/fundacao-faixa-1",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-001",
+          "titulo": "Tokens, base e tipografia do design system",
+          "modelo": "claude-sonnet-5",
+          "esforco": "medium",
+          "arquivos": [
+            "src/styles/_tokens.scss",
+            "src/styles/_base.scss",
+            "src/styles/_tipografia.scss",
+            "src/styles/index.scss",
+            "src/styles.scss"
+          ],
+          "refs": [
+            "AC-013",
+            "AC-015"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/fundacao-faixa-2",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-003",
+          "titulo": "Shell de navegação com sidebar e topbar",
+          "modelo": "claude-sonnet-5",
+          "esforco": "medium",
+          "arquivos": [
+            "src/app/presentation/layout/shell/shell.ts",
+            "src/app/presentation/layout/shell/shell.spec.ts",
+            "src/app/app.ts",
+            "src/app/app.html",
+            "src/app/app.scss",
+            "src/app/app.spec.ts"
+          ],
+          "refs": [
+            "AC-001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/fundacao-faixa-3",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-004",
+          "titulo": "Rotas da aplicação, raiz e página não encontrada",
+          "modelo": "claude-sonnet-5",
+          "esforco": "low",
+          "arquivos": [
+            "src/app/app.routes.ts",
+            "src/app/app.routes.spec.ts",
+            "src/app/presentation/features/nao-encontrado/nao-encontrado.ts"
+          ],
+          "refs": [
+            "AC-002",
+            "AC-003"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/fundacao-faixa-4",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-005",
+          "titulo": "Store do investidor de contexto com persistência e revalidação",
+          "modelo": "claude-sonnet-5",
+          "esforco": "high",
+          "arquivos": [
+            "src/app/application/investidor-contexto.store.ts",
+            "src/app/application/investidor-contexto.store.spec.ts"
+          ],
+          "refs": [
+            "AC-004",
+            "AC-005",
+            "AC-006",
+            "AC-009"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/fundacao-faixa-5",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-008",
+          "titulo": "Configuração de HTTP, base da API e paginação",
+          "modelo": "claude-sonnet-5",
+          "esforco": "low",
+          "arquivos": [
+            "src/app/app.config.ts",
+            "src/app/core/config/api.config.ts",
+            "src/app/core/http/api-url-interceptor.ts",
+            "src/app/core/http/http-params.ts",
+            "src/app/domain/models/page.model.ts"
+          ],
+          "refs": [
+            "AC-010",
+            "AC-011",
+            "AC-012"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [
+    {
+      "id": "T-002",
+      "titulo": "Classes de controle, tabela e card",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "src/styles/_controles.scss",
+        "src/styles/_tabela.scss",
+        "src/styles/_card.scss"
+      ],
+      "refs": [
+        "AC-013",
+        "AC-014",
+        "AC-015"
+      ]
+    },
+    {
+      "id": "T-006",
+      "titulo": "Seletor de investidor na topbar",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "src/app/shared/components/seletor-investidor/seletor-investidor.ts",
+        "src/app/shared/components/seletor-investidor/seletor-investidor.spec.ts"
+      ],
+      "refs": [
+        "AC-004",
+        "AC-009"
+      ]
+    },
+    {
+      "id": "T-007",
+      "titulo": "Guard de contexto nas áreas que dependem de investidor",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "src/app/core/guards/investidor-contexto.guard.ts",
+        "src/app/core/guards/investidor-contexto.guard.spec.ts"
+      ],
+      "refs": [
+        "AC-007",
+        "AC-008"
+      ]
+    },
+    {
+      "id": "T-009",
+      "titulo": "Tradução de erro da API para a tela",
+      "modelo": "claude-sonnet-5",
+      "esforco": "high",
+      "arquivos": [
+        "src/app/core/http/http-error-interceptor.ts",
+        "src/app/core/http/http-error-interceptor.spec.ts",
+        "src/app/domain/models/api-error.model.ts"
+      ],
+      "refs": [
+        "AC-010",
+        "AC-011",
+        "AC-012"
+      ]
+    },
+    {
+      "id": "T-010",
+      "titulo": "Componentes compartilhados de estado e navegação",
+      "modelo": "claude-sonnet-5",
+      "esforco": "high",
+      "arquivos": [
+        "src/app/shared/components/skeleton-tabela/skeleton-tabela.ts",
+        "src/app/shared/components/estado-vazio/estado-vazio.ts",
+        "src/app/shared/components/card-erro/card-erro.ts",
+        "src/app/shared/components/paginador/paginador.ts",
+        "src/app/shared/components/modal-confirmacao/modal-confirmacao.ts",
+        "src/app/shared/components/componentes-estado.spec.ts"
+      ],
+      "refs": [
+        "AC-012",
+        "AC-013"
+      ]
+    },
+    {
+      "id": "T-011",
+      "titulo": "Frescor de cotação e badge de defasagem",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "src/app/application/cotacao-frescor.ts",
+        "src/app/shared/components/badge-defasagem/badge-defasagem.ts"
+      ],
+      "refs": [
+        "AC-044",
+        "AC-045",
+        "AC-073",
+        "AC-104",
+        "AC-105"
+      ]
+    }
+  ],
+  "concluidas": [],
+  "avisos": []
+}

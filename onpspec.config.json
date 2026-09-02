@@ -1,0 +1,19 @@
+{
+  "testCommand": "npx ng test --reporters=tap --watch=false",
+  "reporter": "tap",
+  "testGlobs": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "srcGlobs": [
+    "src/app/**/*.ts"
+  ],
+  "ignoreGlobs": [
+    "node_modules/**",
+    ".git/**",
+    "dist/**",
+    "coverage/**",
+    ".angular/**",
+    ".spec/**"
+  ]
+}

@@ -1,0 +1,169 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plano de execução — fundacao</title>
+<style>
+  :root { --bg:#fafafa; --fg:#1a1a1a; --card:#fff; --borda:#e2e2e2; --sub:#666;
+          --acc:#0a7c42; --acc-fg:#fff; --aviso:#8a6d00; --aviso-bg:#fff8e1; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#141414; --fg:#eaeaea; --card:#1e1e1e; --borda:#333; --sub:#9a9a9a;
+            --acc:#17a35c; --aviso:#e0c36a; --aviso-bg:#2a2410; }
+  }
+  * { box-sizing:border-box }
+  body { margin:0; padding:2rem 1rem; background:var(--bg); color:var(--fg);
+         font:15px/1.55 system-ui,-apple-system,sans-serif }
+  main { max-width:64rem; margin:0 auto }
+  h1 { font-size:1.5rem; margin:0 0 .25rem } h3 { margin:1.5rem 0 .5rem }
+  h4 { margin:0 0 .5rem } small { color:var(--sub); font-weight:400 }
+  .sub { color:var(--sub); margin:0 0 1.25rem }
+  code { font:.85em ui-monospace,monospace; background:var(--card);
+         border:1px solid var(--borda); border-radius:4px; padding:.05em .35em; overflow-wrap:anywhere }
+  .resumo { display:flex; gap:.75rem; flex-wrap:wrap; margin:0 0 1rem }
+  .resumo div { background:var(--card); border:1px solid var(--borda); border-radius:8px;
+                padding:.5rem .9rem } .resumo b { font-size:1.2rem }
+  .executor { background:var(--card); border:1px solid var(--borda); border-radius:10px;
+              padding:1rem; margin:0 0 .5rem }
+  .executor h2 { margin:0 0 .5rem; font-size:1.05rem }
+  .nota { color:var(--sub); font-size:.85rem; margin:.5rem 0 0 }
+  #cmd { display:inline-block; margin-top:.6rem }
+  .grade { display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:.75rem }
+  .faixa { background:var(--card); border:1px solid var(--borda); border-radius:10px; padding: .9rem }
+  .tarefa { display:flex; flex-direction:column; gap:.15rem; padding:.6rem 0;
+            border-top:1px dashed var(--borda) }
+  .tarefa:first-of-type { border-top:0 }
+  .tid { font:700 .85rem ui-monospace,monospace; color:var(--acc) }
+  .meta,.arquivos { font-size:.85rem; color:var(--sub) }
+  .avisos { background:var(--aviso-bg); color:var(--aviso); border-radius:8px;
+            padding:.6rem .9rem; margin:0 0 1rem; font-size:.9rem }
+  ol li { margin:.25rem 0 }
+</style>
+<main>
+  <h1>Plano de execução — fundacao</h1>
+  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-09-02 23:47 · regenere após mudar tasks.md</p>
+  <div class="resumo">
+    <div><b>5</b> tarefa(s) em paralelo</div>
+    <div><b>5</b> faixa(s) · <b>2</b> onda(s)</div>
+    <div><b>6</b> sequencial(is)</div>
+    <div>seleção do usuário: <b>T-001, T-003, T-004, T-005, T-008</b></div>
+    <div>branch <code>spec/fundacao</code></div>
+  </div>
+  
+  <div class="executor">
+    <h2>Como executar — via agente</h2>
+    <p>Peça ao agente (Claude Code) para executar o plano. Ele roda:</p>
+    <div><code id="cmd">bash .spec/features/fundacao/executar-tarefas.sh</code></div>
+    <p class="nota">Este arquivo é só visualização. Cada faixa roda <code>claude -p</code> num worktree próprio, com contexto limpo, modelo e esforço já definidos.
+    O gate final (verify + audit) roda sozinho; a execução fica em background e, a cada
+    1 minuto, o agente posta no chat a <b>tabela de andamento</b>
+    (<code>onp-spec resumo fundacao --tabela</code>) e o
+    <b>resumo geral de andamento</b> (<code>onp-spec resumo fundacao</code>).</p>
+  </div>
+  
+    <section class="onda">
+      <h3>Onda 1 <small>faixa-1 ∥ faixa-2 ∥ faixa-3 — em paralelo, janelas limpas</small></h3>
+      <div class="grade">
+      <div class="faixa">
+        <h4>faixa-1 <small>branch <code>spec/fundacao-faixa-1</code> · worktree <code>../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-1</code></small></h4>
+        
+        <div class="tarefa">
+          <span class="tid">T-001</span>
+          <span class="ttitulo">Tokens, base e tipografia do design system</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/styles/_tokens.scss</code> <code>src/styles/_base.scss</code> <code>src/styles/_tipografia.scss</code> <code>src/styles/index.scss</code> <code>src/styles.scss</code></span>
+        </div>
+      </div>
+      <div class="faixa">
+        <h4>faixa-2 <small>branch <code>spec/fundacao-faixa-2</code> · worktree <code>../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-2</code></small></h4>
+        
+        <div class="tarefa">
+          <span class="tid">T-003</span>
+          <span class="ttitulo">Shell de navegação com sidebar e topbar</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/app/presentation/layout/shell/shell.ts</code> <code>src/app/presentation/layout/shell/shell.spec.ts</code> <code>src/app/app.ts</code> <code>src/app/app.html</code> <code>src/app/app.scss</code> <code>src/app/app.spec.ts</code></span>
+        </div>
+      </div>
+      <div class="faixa">
+        <h4>faixa-3 <small>branch <code>spec/fundacao-faixa-3</code> · worktree <code>../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-3</code></small></h4>
+        
+        <div class="tarefa">
+          <span class="tid">T-004</span>
+          <span class="ttitulo">Rotas da aplicação, raiz e página não encontrada</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>low</b></span>
+          <span class="arquivos"><code>src/app/app.routes.ts</code> <code>src/app/app.routes.spec.ts</code> <code>src/app/presentation/features/nao-encontrado/nao-encontrado.ts</code></span>
+        </div>
+      </div></div>
+    </section>
+    <section class="onda">
+      <h3>Onda 2 <small>faixa-4 ∥ faixa-5 — em paralelo, janelas limpas</small></h3>
+      <div class="grade">
+      <div class="faixa">
+        <h4>faixa-4 <small>branch <code>spec/fundacao-faixa-4</code> · worktree <code>../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-4</code></small></h4>
+        
+        <div class="tarefa">
+          <span class="tid">T-005</span>
+          <span class="ttitulo">Store do investidor de contexto com persistência e revalidação</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>high</b></span>
+          <span class="arquivos"><code>src/app/application/investidor-contexto.store.ts</code> <code>src/app/application/investidor-contexto.store.spec.ts</code></span>
+        </div>
+      </div>
+      <div class="faixa">
+        <h4>faixa-5 <small>branch <code>spec/fundacao-faixa-5</code> · worktree <code>../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-5</code></small></h4>
+        
+        <div class="tarefa">
+          <span class="tid">T-008</span>
+          <span class="ttitulo">Configuração de HTTP, base da API e paginação</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>low</b></span>
+          <span class="arquivos"><code>src/app/app.config.ts</code> <code>src/app/core/config/api.config.ts</code> <code>src/app/core/http/api-url-interceptor.ts</code> <code>src/app/core/http/http-params.ts</code> <code>src/app/domain/models/page.model.ts</code></span>
+        </div>
+      </div></div>
+    </section>
+  
+    <section class="onda">
+      <h3>Sequenciais <small>após as ondas, na árvore principal</small></h3>
+      <div class="grade"><div class="faixa">
+        <div class="tarefa">
+          <span class="tid">T-002</span>
+          <span class="ttitulo">Classes de controle, tabela e card</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/styles/_controles.scss</code> <code>src/styles/_tabela.scss</code> <code>src/styles/_card.scss</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-006</span>
+          <span class="ttitulo">Seletor de investidor na topbar</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/app/shared/components/seletor-investidor/seletor-investidor.ts</code> <code>src/app/shared/components/seletor-investidor/seletor-investidor.spec.ts</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-007</span>
+          <span class="ttitulo">Guard de contexto nas áreas que dependem de investidor</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/app/core/guards/investidor-contexto.guard.ts</code> <code>src/app/core/guards/investidor-contexto.guard.spec.ts</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-009</span>
+          <span class="ttitulo">Tradução de erro da API para a tela</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>high</b></span>
+          <span class="arquivos"><code>src/app/core/http/http-error-interceptor.ts</code> <code>src/app/core/http/http-error-interceptor.spec.ts</code> <code>src/app/domain/models/api-error.model.ts</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-010</span>
+          <span class="ttitulo">Componentes compartilhados de estado e navegação</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>high</b></span>
+          <span class="arquivos"><code>src/app/shared/components/skeleton-tabela/skeleton-tabela.ts</code> <code>src/app/shared/components/estado-vazio/estado-vazio.ts</code> <code>src/app/shared/components/card-erro/card-erro.ts</code> <code>src/app/shared/components/paginador/paginador.ts</code> <code>src/app/shared/components/modal-confirmacao/modal-confirmacao.ts</code> <code>src/app/shared/components/componentes-estado.spec.ts</code></span>
+        </div>
+        <div class="tarefa">
+          <span class="tid">T-011</span>
+          <span class="ttitulo">Frescor de cotação e badge de defasagem</span>
+          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="arquivos"><code>src/app/application/cotacao-frescor.ts</code> <code>src/app/shared/components/badge-defasagem/badge-defasagem.ts</code></span>
+        </div></div></div>
+    </section>
+  <section class="onda">
+    <h3>Branches e commits</h3>
+    <ol>
+      <li>tudo parte da branch de trabalho <code>spec/fundacao</code></li>
+      <li>1 faixa = 1 branch + 1 worktree; 1 tarefa = 1 commit <code>T-xxx fundacao: título</code></li>
+      <li>merge <code>--no-ff</code> por faixa, na ordem; conflito interrompe e pede você</li>
+      <li>gate final: <code>onp-spec verify fundacao</code> + <code>onp-spec audit --ci</code> — exit 0 ou não está pronto</li>
+    </ol>
+  </section>
+</main>

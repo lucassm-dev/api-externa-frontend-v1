@@ -1,0 +1,8 @@
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/.spec/features/acoes/tasks.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/.spec/features/corretoras/tasks.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/.spec/features/dashboard/spec.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/.spec/features/dashboard/tasks.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/.spec/features/fundacao/spec.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/CLAUDE.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/README.md
+/Users/lucas/Documents/Programacao/Angular/api-externa-frontend-v1/docs/superpowers/specs/2026-09-02-frontend-mvp-design.md
