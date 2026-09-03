@@ -50,8 +50,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: medio
 - Notas: depende de T-005. Protege dashboard, carteiras e movimentações; catálogos de ações, corretoras e investidores ficam livres. Sem contexto, redireciona para investidores, onde se escolhe ou cadastra.
 
-## T-008 — Configuração de HTTP, base da API e paginação [pendente]
-
+## T-008 — Configuração de HTTP, base da API e paginação [concluida]
 - Refs: AC-010, AC-011, AC-012
 - Arquivos: src/app/app.config.ts, src/app/core/config/api.config.ts, src/app/core/http/api-url-interceptor.ts, src/app/core/http/http-params.ts, src/app/domain/models/page.model.ts
 - Esforço: baixo
