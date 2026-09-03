@@ -59,8 +59,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: alto
 - Notas: toda falha vira `ApiError`. Erro de validação carrega os erros por campo; erros não mapeados pelo backend chegam sem mensagem e precisam de texto próprio, nunca do corpo técnico cru; falha de serviço externo abre caminho para tentar de novo.
 
-## T-010 — Componentes compartilhados de estado e navegação [pendente]
-
+## T-010 — Componentes compartilhados de estado e navegação [concluida]
 - Refs: AC-012, AC-013
 - Arquivos: src/app/shared/components/skeleton-tabela/skeleton-tabela.ts, src/app/shared/components/estado-vazio/estado-vazio.ts, src/app/shared/components/card-erro/card-erro.ts, src/app/shared/components/paginador/paginador.ts, src/app/shared/components/modal-confirmacao/modal-confirmacao.ts, src/app/shared/components/componentes-estado.spec.ts
 - Esforço: alto
