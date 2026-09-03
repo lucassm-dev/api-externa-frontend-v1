@@ -26,8 +26,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: medio
 - Notas: sidebar de 240px e topbar de 64px; a área da rota atual fica destacada. A topbar hospeda o seletor de investidor de T-006.
 
-## T-004 — Rotas da aplicação, raiz e página não encontrada [pendente]
-
+## T-004 — Rotas da aplicação, raiz e página não encontrada [concluida]
 - Refs: AC-002, AC-003
 - Arquivos: src/app/app.routes.ts, src/app/app.routes.spec.ts, src/app/presentation/features/nao-encontrado/nao-encontrado.ts
 - Esforço: baixo
