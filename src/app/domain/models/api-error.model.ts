@@ -20,6 +20,7 @@ export class ApiError extends Error {
     override readonly message: string,
     readonly fieldErrors: FieldError[] = [],
     readonly path?: string,
+    readonly canRetry = false,
   ) {
     super(message);
     this.name = 'ApiError';
@@ -28,6 +29,11 @@ export class ApiError extends Error {
   /** true quando a requisição não chegou ao backend (offline, DNS, CORS). */
   get isNetworkError(): boolean {
     return this.status === 0;
+  }
+
+  /** true quando a origem da falha é uma fonte externa ao sistema. */
+  get isExternalServiceError(): boolean {
+    return this.status === 502;
   }
 
   messageFor(field: string): string | undefined {
