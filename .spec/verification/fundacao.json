@@ -1,7 +1,7 @@
 {
   "feature": "fundacao",
-  "timestamp": "2026-09-02T23:52:41.722Z",
-  "gitRev": "a16d77c",
+  "timestamp": "2026-09-03T00:24:21.843Z",
+  "gitRev": "6897936",
   "command": "npx ng test --reporters=tap --watch=false",
   "reporter": "tap",
   "exitCode": 1,
@@ -9,57 +9,57 @@
   "results": {
     "AC-001": {
       "status": "fail",
-      "testName": "AC-001: A navegação lista as áreas e destaca a atual @spec:AC-001 # time=2.02ms",
+      "testName": "AC-001: A navegação lista as áreas e destaca a atual @spec:AC-001 # time=2.90ms",
       "method": "tap"
     },
     "AC-002": {
       "status": "fail",
-      "testName": "AC-002: A rota raiz leva ao dashboard @spec:AC-002 # time=2.00ms",
+      "testName": "AC-002: A rota raiz leva ao dashboard @spec:AC-002 # time=3.50ms",
       "method": "tap"
     },
     "AC-003": {
       "status": "fail",
-      "testName": "AC-003: Endereço inexistente informa sem derrubar a navegação @spec:AC-003 # time=0.25ms",
+      "testName": "AC-003: Endereço inexistente informa sem derrubar a navegação @spec:AC-003 # time=0.31ms",
       "method": "tap"
     },
     "AC-004": {
       "status": "fail",
-      "testName": "AC-004: O seletor lista os investidores e define o contexto @spec:AC-004 # time=1.82ms",
+      "testName": "AC-004: O seletor lista os investidores e define o contexto @spec:AC-004 # time=2.26ms",
       "method": "tap"
     },
     "AC-005": {
       "status": "fail",
-      "testName": "AC-005: O contexto sobrevive ao recarregamento da página @spec:AC-005 # time=2.73ms",
+      "testName": "AC-005: O contexto sobrevive ao recarregamento da página @spec:AC-005 # time=1.80ms",
       "method": "tap"
     },
     "AC-006": {
       "status": "fail",
-      "testName": "AC-006: Contexto de investidor excluído não persiste @spec:AC-006 # time=0.29ms",
+      "testName": "AC-006: Contexto de investidor excluído não persiste @spec:AC-006 # time=0.25ms",
       "method": "tap"
     },
     "AC-007": {
       "status": "fail",
-      "testName": "AC-007: Áreas que dependem de investidor exigem contexto @spec:AC-007 # time=3.46ms",
+      "testName": "AC-007: Áreas que dependem de investidor exigem contexto @spec:AC-007 # time=2.15ms",
       "method": "tap"
     },
     "AC-008": {
       "status": "fail",
-      "testName": "AC-008: Catálogos continuam acessíveis sem contexto @spec:AC-008 # time=0.29ms",
+      "testName": "AC-008: Catálogos continuam acessíveis sem contexto @spec:AC-008 # time=0.24ms",
       "method": "tap"
     },
     "AC-009": {
       "status": "fail",
-      "testName": "AC-009: Trocar de investidor troca os dados exibidos @spec:AC-009 # time=0.17ms",
+      "testName": "AC-009: Trocar de investidor troca os dados exibidos @spec:AC-009 # time=0.15ms",
       "method": "tap"
     },
     "AC-010": {
       "status": "fail",
-      "testName": "AC-010: Erro de validação vira mensagem no campo @spec:AC-010 # time=1.81ms",
+      "testName": "AC-010: Erro de validação vira mensagem no campo @spec:AC-010 # time=4.03ms",
       "method": "tap"
     },
     "AC-011": {
       "status": "fail",
-      "testName": "AC-011: Erro sem mensagem tem texto compreensível @spec:AC-011 # time=0.24ms",
+      "testName": "AC-011: Erro sem mensagem tem texto compreensível @spec:AC-011 # time=0.37ms",
       "method": "tap"
     },
     "AC-012": {
@@ -69,7 +69,7 @@
     },
     "AC-013": {
       "status": "fail",
-      "testName": "AC-013: Colunas numéricas alinham na vertical @spec:AC-013 # time=2.16ms",
+      "testName": "AC-013: Colunas numéricas alinham na vertical @spec:AC-013 # time=2.08ms",
       "method": "tap"
     },
     "AC-014": {
@@ -79,14 +79,14 @@
     },
     "AC-015": {
       "status": "fail",
-      "testName": "AC-015: Todo controle mostra o foco de teclado @spec:AC-015 # time=0.15ms",
+      "testName": "AC-015: Todo controle mostra o foco de teclado @spec:AC-015 # time=0.23ms",
       "method": "tap"
     }
   },
   "principles": {
     "P-004": {
       "status": "fail",
-      "testName": "P-004: Nenhuma cotação é exibida sem o horário em que foi obtida @principle:P-004 # time=1.77ms"
+      "testName": "P-004: Nenhuma cotação é exibida sem o horário em que foi obtida @principle:P-004 # time=1.97ms"
     }
   }
 }
