@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+input,
+select,
+textarea,
+a[href],
+[tabindex]:not([tabindex='-1']) {
+  &:focus-visible {
+    outline: 2px solid var(--brand-600);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgb(15 158 122 / 15%);
+  }
+}
