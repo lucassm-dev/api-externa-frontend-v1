@@ -53,8 +53,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: baixo
 - Notas: os repositórios declaram só o caminho do recurso; o interceptor prefixa com a base. `Page<T>` e a montagem dos parâmetros de paginação servem a todas as listagens.
 
-## T-009 — Tradução de erro da API para a tela [pendente]
-
+## T-009 — Tradução de erro da API para a tela [concluida]
 - Refs: AC-010, AC-011, AC-012
 - Arquivos: src/app/core/http/http-error-interceptor.ts, src/app/core/http/http-error-interceptor.spec.ts, src/app/domain/models/api-error.model.ts
 - Esforço: alto
