@@ -18,8 +18,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: medio
 - Notas: depende de T-001. Botão em três níveis mais destrutivo, input, select, label; linha de 48px, cabeçalho fixo, coluna travada e gradiente de overflow; card, badge e chip. Variação de valor precisa de sinal ou rótulo além da cor.
 
-## T-003 — Shell de navegação com sidebar e topbar [pendente]
-
+## T-003 — Shell de navegação com sidebar e topbar [concluida]
 - Refs: AC-001
 - Arquivos: src/app/presentation/layout/shell/shell.ts, src/app/presentation/layout/shell/shell.spec.ts, src/app/app.ts, src/app/app.html, src/app/app.scss, src/app/app.spec.ts
 - Esforço: medio
@@ -31,8 +30,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: baixo
 - Notas: raiz redireciona para o dashboard; cada área é carregada sob demanda; endereço inexistente cai numa tela própria sem derrubar o shell.
 
-## T-005 — Store do investidor de contexto com persistência e revalidação [pendente]
-
+## T-005 — Store do investidor de contexto com persistência e revalidação [concluida]
 - Refs: AC-004, AC-005, AC-006, AC-009
 - Arquivos: src/app/application/investidor-contexto.store.ts, src/app/application/investidor-contexto.store.spec.ts
 - Esforço: alto
