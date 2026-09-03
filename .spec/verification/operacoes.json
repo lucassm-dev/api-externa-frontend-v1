@@ -1,0 +1,22 @@
+{
+  "feature": "operacoes",
+  "timestamp": "2026-09-03T04:28:50.060Z",
+  "gitRev": "88d2b73",
+  "command": "npx ng test --reporters=tap --watch=false",
+  "reporter": "tap",
+  "exitCode": 1,
+  "testsParsed": 64,
+  "results": {
+    "AC-073": {
+      "status": "pass",
+      "testName": "AC-073: Cotação defasada é sinalizada na linha @spec:AC-073 # time=0.35ms",
+      "method": "tap"
+    }
+  },
+  "principles": {
+    "P-004": {
+      "status": "fail",
+      "testName": "P-004: Nenhuma cotação é exibida sem o horário em que foi obtida @principle:P-004 # time=5.55ms"
+    }
+  }
+}

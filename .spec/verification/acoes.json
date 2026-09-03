@@ -1,0 +1,27 @@
+{
+  "feature": "acoes",
+  "timestamp": "2026-09-03T04:28:47.722Z",
+  "gitRev": "88d2b73",
+  "command": "npx ng test --reporters=tap --watch=false",
+  "reporter": "tap",
+  "exitCode": 1,
+  "testsParsed": 64,
+  "results": {
+    "AC-044": {
+      "status": "pass",
+      "testName": "AC-044: Cotação além do limiar do mercado é sinalizada @spec:AC-044 # time=1.01ms",
+      "method": "tap"
+    },
+    "AC-045": {
+      "status": "pass",
+      "testName": "AC-045: Defasagem geral vira um aviso só, não um por linha @spec:AC-045 # time=0.38ms",
+      "method": "tap"
+    }
+  },
+  "principles": {
+    "P-004": {
+      "status": "fail",
+      "testName": "P-004: Nenhuma cotação é exibida sem o horário em que foi obtida @principle:P-004 # time=2.26ms"
+    }
+  }
+}

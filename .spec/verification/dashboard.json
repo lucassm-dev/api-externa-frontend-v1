@@ -1,0 +1,27 @@
+{
+  "feature": "dashboard",
+  "timestamp": "2026-09-03T04:28:52.262Z",
+  "gitRev": "88d2b73",
+  "command": "npx ng test --reporters=tap --watch=false",
+  "reporter": "tap",
+  "exitCode": 1,
+  "testsParsed": 64,
+  "results": {
+    "AC-104": {
+      "status": "pass",
+      "testName": "AC-104: Nenhum número aparece sem o horário da cotação que o gerou @spec:AC-104 # time=0.28ms",
+      "method": "tap"
+    },
+    "AC-105": {
+      "status": "pass",
+      "testName": "AC-105: Consolidado com cotação defasada é sinalizado @spec:AC-105 # time=0.12ms",
+      "method": "tap"
+    }
+  },
+  "principles": {
+    "P-004": {
+      "status": "fail",
+      "testName": "P-004: Nenhuma cotação é exibida sem o horário em que foi obtida @principle:P-004 # time=3.65ms"
+    }
+  }
+}
