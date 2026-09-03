@@ -1,0 +1,138 @@
+{
+  "runId": "api-externa-frontend-v1-investidores-mtl10518",
+  "feature": "investidores",
+  "agent": "codex",
+  "modo": "paralelo",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-09-03 04:29",
+  "branchTrabalho": "spec/investidores",
+  "baseDir": ".spec/features/investidores",
+  "specDir": ".spec",
+  "repoName": "api-externa-frontend-v1",
+  "logsDir": "../onp-worktrees/api-externa-frontend-v1-investidores-logs",
+  "ondas": [
+    [
+      "faixa-1",
+      "faixa-2",
+      "faixa-3"
+    ],
+    [
+      "faixa-4",
+      "faixa-5"
+    ]
+  ],
+  "faixas": [
+    {
+      "id": "faixa-1",
+      "branch": "spec/investidores-faixa-1",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-investidores-faixa-1",
+      "tarefas": [
+        {
+          "id": "T-012",
+          "titulo": "Contrato e repositório HTTP de investidores",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "low",
+          "arquivos": [
+            "src/app/domain/models/investidor.model.ts",
+            "src/app/domain/ports/investidor-repository.port.ts",
+            "src/app/infra/http/investidor-http.repository.ts"
+          ],
+          "refs": [
+            "AC-016",
+            "AC-020",
+            "AC-023"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-2",
+      "branch": "spec/investidores-faixa-2",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-investidores-faixa-2",
+      "tarefas": [
+        {
+          "id": "T-013",
+          "titulo": "Facade de investidores",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/app/application/investidores.facade.ts"
+          ],
+          "refs": [
+            "AC-016",
+            "AC-020",
+            "AC-021",
+            "AC-023"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-3",
+      "branch": "spec/investidores-faixa-3",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-investidores-faixa-3",
+      "tarefas": [
+        {
+          "id": "T-014",
+          "titulo": "Listagem de investidores com paginação, vazio e escolha de contexto",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "medium",
+          "arquivos": [
+            "src/app/presentation/features/investidores/investidores-page.ts"
+          ],
+          "refs": [
+            "AC-020",
+            "AC-021",
+            "AC-022"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-4",
+      "branch": "spec/investidores-faixa-4",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-investidores-faixa-4",
+      "tarefas": [
+        {
+          "id": "T-015",
+          "titulo": "Formulário de cadastro de investidor",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "high",
+          "arquivos": [
+            "src/app/presentation/features/investidores/investidor-form.ts"
+          ],
+          "refs": [
+            "AC-016",
+            "AC-017",
+            "AC-018",
+            "AC-019"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faixa-5",
+      "branch": "spec/investidores-faixa-5",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-investidores-faixa-5",
+      "tarefas": [
+        {
+          "id": "T-016",
+          "titulo": "Exclusão de investidor com confirmação",
+          "modelo": "gpt-5.6-terra",
+          "esforco": "low",
+          "arquivos": [
+            "src/app/presentation/features/investidores/investidor-excluir.ts"
+          ],
+          "refs": [
+            "AC-023"
+          ]
+        }
+      ]
+    }
+  ],
+  "sequenciais": [],
+  "concluidas": [],
+  "avisos": []
+}
