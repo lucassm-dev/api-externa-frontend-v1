@@ -65,8 +65,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: alto
 - Notas: depende de T-002. O que é só aparência ficou em classe; o que tem comportamento ou estrutura vira componente. Usados por todas as telas de dado.
 
-## T-011 — Frescor de cotação e badge de defasagem [pendente]
-
+## T-011 — Frescor de cotação e badge de defasagem [concluida]
 - Refs: AC-044, AC-045, AC-073, AC-104, AC-105
 - Arquivos: src/app/application/cotacao-frescor.ts, src/app/shared/components/badge-defasagem/badge-defasagem.ts
 - Esforço: medio
