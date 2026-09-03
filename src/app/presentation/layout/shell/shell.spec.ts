@@ -1,14 +1,57 @@
-// T-003 — Shell de navegação. Teste-esqueleto de `onp-spec scaffold`: FALHA até ser
-// implementado. A tag `@spec:AC-xxx` liga o teste ao critério de aceite; se mover o teste,
-// leve a tag junto ou o critério volta a contar como sem prova.
+import { Component } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterOutlet } from '@angular/router';
+import { ShellComponent } from './shell';
+
+@Component({ template: '' })
+class PaginaComponent {}
+
+const rotas = [
+  { path: 'dashboard', component: PaginaComponent },
+  { path: 'dashboard/aportes', component: PaginaComponent },
+  { path: 'carteiras', component: PaginaComponent },
+  { path: 'movimentacoes', component: PaginaComponent },
+  { path: 'acoes', component: PaginaComponent },
+  { path: 'corretoras', component: PaginaComponent },
+  { path: 'investidores', component: PaginaComponent },
+];
 
 describe('shell', () => {
-  it('AC-001: A navegação lista as áreas e destaca a atual @spec:AC-001', () => {
-    // Dado: que abro a aplicação
-    // Quando: a tela carrega
-    // Então: vejo Dashboard, Carteiras, Movimentações, Ações, Corretoras e Investidores,
-    //        com a área da rota atual destacada
-    // E: Dashboard abre as sub-áreas Consolidado e Aportes, com a sub-área atual destacada
-    throw new Error('AC-001 ainda não provado — implemente este teste');
+  let router: Router;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ShellComponent, RouterOutlet],
+      providers: [provideRouter(rotas)],
+    });
+    router = TestBed.inject(Router);
+  });
+
+  it('AC-001: A navegação lista as áreas e destaca a atual @spec:AC-001', async () => {
+    const fixture = TestBed.createComponent(ShellComponent);
+    fixture.detectChanges();
+
+    await router.navigateByUrl('/dashboard/aportes');
+    fixture.detectChanges();
+
+    const elemento: HTMLElement = fixture.nativeElement;
+    const navegacao = Array.from(elemento.querySelectorAll<HTMLAnchorElement>('.nav-link'));
+    const linkPorTexto = (texto: string) =>
+      navegacao.find((link) => link.textContent?.trim() === texto);
+
+    for (const area of [
+      'Dashboard',
+      'Carteiras',
+      'Movimentações',
+      'Ações',
+      'Corretoras',
+      'Investidores',
+    ]) {
+      expect(linkPorTexto(area)).toBeTruthy();
+    }
+
+    expect(linkPorTexto('Dashboard')?.classList).toContain('is-active');
+    expect(linkPorTexto('Aportes')?.classList).toContain('is-active');
+    expect(linkPorTexto('Consolidado')?.classList).not.toContain('is-active');
   });
 });

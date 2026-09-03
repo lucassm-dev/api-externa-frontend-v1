@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ShellComponent } from './presentation/layout/shell/shell';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ShellComponent],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
 })
-export class App {
-  protected readonly title = signal('api-externa-frontend-v1');
-}
+export class App {}
