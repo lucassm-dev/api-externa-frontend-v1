@@ -41,8 +41,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: medio
 - Notas: depende de T-005. Consome a mesma listagem que a revalidação já carrega.
 
-## T-007 — Guard de contexto nas áreas que dependem de investidor [pendente]
-
+## T-007 — Guard de contexto nas áreas que dependem de investidor [concluida]
 - Refs: AC-007, AC-008
 - Arquivos: src/app/core/guards/investidor-contexto.guard.ts, src/app/core/guards/investidor-contexto.guard.spec.ts
 - Esforço: medio
