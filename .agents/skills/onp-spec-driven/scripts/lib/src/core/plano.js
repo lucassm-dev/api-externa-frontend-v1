@@ -740,7 +740,7 @@ export function renderPlanoSh(plan) {
   P(`BASE_BRANCH=${shq(plan.branchTrabalho)}`);
   P(`ENGINE=${shq(plan.engine)}`);
   if (codex) {
-    P(`CODEX_FLAGS=(--sandbox ${shq(plan.cfg.sandbox || 'workspace-write')})`);
+    P(`CODEX_FLAGS=(--sandbox ${shq(plan.cfg.sandbox || 'workspace-write')} --approve-for-me)`);
     P('STREAM_FLAGS=(--json)');
   } else if (cursor) {
     P('# --force: sem ele o modo print do Cursor só propõe alterações (não escreve).');
@@ -815,6 +815,10 @@ export function renderPlanoSh(plan) {
   P('  if [ -e "$3" ]; then git worktree remove --force "$3" >/dev/null 2>&1; rm -rf "$3"; fi');
   P('  if git show-ref --verify --quiet "refs/heads/$2"; then git branch -D "$2" >/dev/null 2>&1; fi');
   P('  git worktree add "$3" -b "$2" >/dev/null 2>&1 || { vermelho "✘ não consegui criar o worktree de $1 em $3"; return 1; }');
+  P('  # worktrees não carregam diretórios ignorados; reutiliza as dependências já instaladas na árvore principal');
+  P('  if [ -d "$TOPLEVEL/node_modules" ] && [ ! -e "$3/node_modules" ]; then');
+  P('    ln -s "$TOPLEVEL/node_modules" "$3/node_modules" || { vermelho "✘ não consegui disponibilizar node_modules em $3"; return 1; }');
+  P('  fi');
   P('}');
   P('');
   P('tentativa() { # $1=faixa — conta reexecuções (vai para o ledger)');

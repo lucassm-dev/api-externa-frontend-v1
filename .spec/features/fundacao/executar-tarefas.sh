@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:16
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:23
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,11 +14,11 @@
 set -u
 set -o pipefail
 
-RUN_ID='api-externa-frontend-v1-fundacao-mtkryf4p'
+RUN_ID='api-externa-frontend-v1-fundacao-mtks8aay'
 FEATURE='fundacao'
 BASE_BRANCH='spec/fundacao'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
-CODEX_FLAGS=(--sandbox 'workspace-write')
+CODEX_FLAGS=(--sandbox 'workspace-write' --approve-for-me)
 STREAM_FLAGS=(--json)
 FALHAS=""
 COM_GATE=1
@@ -77,6 +77,10 @@ preparar_worktree() { # $1=faixa $2=branch $3=worktree
   if [ -e "$3" ]; then git worktree remove --force "$3" >/dev/null 2>&1; rm -rf "$3"; fi
   if git show-ref --verify --quiet "refs/heads/$2"; then git branch -D "$2" >/dev/null 2>&1; fi
   git worktree add "$3" -b "$2" >/dev/null 2>&1 || { vermelho "✘ não consegui criar o worktree de $1 em $3"; return 1; }
+  # worktrees não carregam diretórios ignorados; reutiliza as dependências já instaladas na árvore principal
+  if [ -d "$TOPLEVEL/node_modules" ] && [ ! -e "$3/node_modules" ]; then
+    ln -s "$TOPLEVEL/node_modules" "$3/node_modules" || { vermelho "✘ não consegui disponibilizar node_modules em $3"; return 1; }
+  fi
 }
 
 tentativa() { # $1=faixa — conta reexecuções (vai para o ledger)
