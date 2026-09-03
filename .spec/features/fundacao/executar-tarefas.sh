@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 03:47
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 04:07
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='api-externa-frontend-v1-fundacao-mtkzhtva'
+RUN_ID='api-externa-frontend-v1-fundacao-mtl087xo'
 FEATURE='fundacao'
 BASE_BRANCH='spec/fundacao'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -191,7 +191,7 @@ iniciar_resumos() {
   trap 'parar_resumos; node "$ENGINE" resumo "$FEATURE" --gravar >/dev/null 2>&1 || true' EXIT
 }
 
-# ── faixa-1: T-001 ──
+# ── faixa-1: T-008 ──
 executar_faixa_1() {
   local WT="$WT_BASE-faixa-1"
   preparar_worktree 'faixa-1' 'spec/fundacao-faixa-1' "$WT" || return 1
@@ -199,100 +199,7 @@ executar_faixa_1() {
   : > "$LOG_DIR/faixa-1.log"
   (
     cd "$WT" || exit 9
-    rodar_tarefa 'faixa-1' 'T-001' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
-A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
-
-Sua tarefa (somente ela):
-T-001 — "Tokens, base e tipografia do design system"
-  critérios/refs: AC-013 (Colunas numéricas alinham na vertical), AC-015 (Todo controle mostra o foco de teclado)
-  arquivos permitidos (e seus testes): src/styles/_tokens.scss, src/styles/_base.scss, src/styles/_tipografia.scss, src/styles/index.scss, src/styles.scss
-  mensagem de commit: "T-001 fundacao: Tokens, base e tipografia do design system"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-1.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-1' 'spec/fundacao-faixa-1' "$WT" "$st" || return 1
-  marcar_concluidas T-001
-  return 0
-}
-
-# ── faixa-2: T-003 ──
-executar_faixa_2() {
-  local WT="$WT_BASE-faixa-2"
-  preparar_worktree 'faixa-2' 'spec/fundacao-faixa-2' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-2' --estado executando --tentativa "$(tentativa 'faixa-2')"
-  : > "$LOG_DIR/faixa-2.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-2' 'T-003' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
-A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
-
-Sua tarefa (somente ela):
-T-003 — "Shell de navegação com sidebar e topbar"
-  critérios/refs: AC-001 (A navegação lista as áreas e destaca a atual)
-  arquivos permitidos (e seus testes): src/app/presentation/layout/shell/shell.ts, src/app/presentation/layout/shell/shell.spec.ts, src/app/app.ts, src/app/app.html, src/app/app.scss, src/app/app.spec.ts
-  mensagem de commit: "T-003 fundacao: Shell de navegação com sidebar e topbar"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
-  ) >> "$LOG_DIR/faixa-2.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-2' 'spec/fundacao-faixa-2' "$WT" "$st" || return 1
-  marcar_concluidas T-003
-  return 0
-}
-
-# ── faixa-3: T-005 ──
-executar_faixa_3() {
-  local WT="$WT_BASE-faixa-3"
-  preparar_worktree 'faixa-3' 'spec/fundacao-faixa-3' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-3' --estado executando --tentativa "$(tentativa 'faixa-3')"
-  : > "$LOG_DIR/faixa-3.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-3' 'T-005' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
-A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
-
-Sua tarefa (somente ela):
-T-005 — "Store do investidor de contexto com persistência e revalidação"
-  critérios/refs: AC-004 (O seletor lista os investidores e define o contexto), AC-005 (O contexto sobrevive ao recarregamento da página), AC-006 (Contexto de investidor excluído não persiste), AC-009 (Trocar de investidor troca os dados exibidos)
-  arquivos permitidos (e seus testes): src/app/application/investidor-contexto.store.ts, src/app/application/investidor-contexto.store.spec.ts
-  mensagem de commit: "T-005 fundacao: Store do investidor de contexto com persistência e revalidação"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' high
-  ) >> "$LOG_DIR/faixa-3.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-3' 'spec/fundacao-faixa-3' "$WT" "$st" || return 1
-  marcar_concluidas T-005
-  return 0
-}
-
-# ── faixa-4: T-008 ──
-executar_faixa_4() {
-  local WT="$WT_BASE-faixa-4"
-  preparar_worktree 'faixa-4' 'spec/fundacao-faixa-4' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
-  : > "$LOG_DIR/faixa-4.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-4' 'T-008' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
+    rodar_tarefa 'faixa-1' 'T-008' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
 A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
@@ -308,9 +215,9 @@ Regras inegociáveis:
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' low
-  ) >> "$LOG_DIR/faixa-4.log" 2>&1
+  ) >> "$LOG_DIR/faixa-1.log" 2>&1
   local st=$?
-  mesclar_faixa 'faixa-4' 'spec/fundacao-faixa-4' "$WT" "$st" || return 1
+  mesclar_faixa 'faixa-1' 'spec/fundacao-faixa-1' "$WT" "$st" || return 1
   marcar_concluidas T-008
   return 0
 }
@@ -566,20 +473,11 @@ executar_tudo() {
   iniciar_resumos
   info "logs em: $LOG_DIR"
   info "resumo geral de andamento: a cada 1 min aqui no terminal (e via: onp-spec resumo)"
-  # onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3
-  info "onda 1: faixa-1 ∥ faixa-2 ∥ faixa-3 — janelas limpas em paralelo"
+  # onda 1: faixa-1
+  info "onda 1: faixa-1 — janelas limpas em paralelo"
   executar_faixa_1 & PID_FAIXA_1=$!
-  executar_faixa_2 & PID_FAIXA_2=$!
-  executar_faixa_3 & PID_FAIXA_3=$!
   if ! wait "$PID_FAIXA_1"; then FALHAS="$FALHAS faixa-1"; fi
-  if ! wait "$PID_FAIXA_2"; then FALHAS="$FALHAS faixa-2"; fi
-  if ! wait "$PID_FAIXA_3"; then FALHAS="$FALHAS faixa-3"; fi
   if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar 'onda 1'; fi
-  # onda 2: faixa-4
-  info "onda 2: faixa-4 — janelas limpas em paralelo"
-  executar_faixa_4 & PID_FAIXA_4=$!
-  if ! wait "$PID_FAIXA_4"; then FALHAS="$FALHAS faixa-4"; fi
-  if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar 'onda 2'; fi
   executar_seq_T_002 || true
   executar_seq_T_006 || true
   executar_seq_T_007 || true
@@ -591,10 +489,7 @@ executar_tudo() {
 
 listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
-  echo "  faixa-1  onda 1  T-001"
-  echo "  faixa-2  onda 1  T-003"
-  echo "  faixa-3  onda 1  T-005"
-  echo "  faixa-4  onda 2  T-008"
+  echo "  faixa-1  onda 1  T-008"
   echo "  seq       T-002 (sequencial)"
   echo "  seq       T-006 (sequencial)"
   echo "  seq       T-007 (sequencial)"
@@ -632,9 +527,6 @@ case "$MODO" in
   faixa)
     case "$ALVO" in
       faixa-1) evento --tipo inicio --escopo "faixa:faixa-1"; iniciar_resumos; executar_faixa_1 || true; encerrar "faixa:faixa-1" ;;
-      faixa-2) evento --tipo inicio --escopo "faixa:faixa-2"; iniciar_resumos; executar_faixa_2 || true; encerrar "faixa:faixa-2" ;;
-      faixa-3) evento --tipo inicio --escopo "faixa:faixa-3"; iniciar_resumos; executar_faixa_3 || true; encerrar "faixa:faixa-3" ;;
-      faixa-4) evento --tipo inicio --escopo "faixa:faixa-4"; iniciar_resumos; executar_faixa_4 || true; encerrar "faixa:faixa-4" ;;
       *) falhar "faixa desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
   seq)
