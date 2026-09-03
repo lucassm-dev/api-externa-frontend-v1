@@ -38,7 +38,7 @@
 </style>
 <main>
   <h1>Plano de execução — fundacao</h1>
-  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-09-02 23:47 · regenere após mudar tasks.md</p>
+  <p class="sub">gerado por <code>onp-spec plano</code> em 2026-09-03 00:04 · regenere após mudar tasks.md</p>
   <div class="resumo">
     <div><b>5</b> tarefa(s) em paralelo</div>
     <div><b>5</b> faixa(s) · <b>2</b> onda(s)</div>
@@ -49,9 +49,9 @@
   
   <div class="executor">
     <h2>Como executar — via agente</h2>
-    <p>Peça ao agente (Claude Code) para executar o plano. Ele roda:</p>
+    <p>Peça ao agente (Codex) para executar o plano. Ele roda:</p>
     <div><code id="cmd">bash .spec/features/fundacao/executar-tarefas.sh</code></div>
-    <p class="nota">Este arquivo é só visualização. Cada faixa roda <code>claude -p</code> num worktree próprio, com contexto limpo, modelo e esforço já definidos.
+    <p class="nota">Este arquivo é só visualização. Cada faixa roda <code>codex exec</code> num worktree próprio, com contexto limpo, modelo e esforço já definidos.
     O gate final (verify + audit) roda sozinho; a execução fica em background e, a cada
     1 minuto, o agente posta no chat a <b>tabela de andamento</b>
     (<code>onp-spec resumo fundacao --tabela</code>) e o
@@ -67,7 +67,7 @@
         <div class="tarefa">
           <span class="tid">T-001</span>
           <span class="ttitulo">Tokens, base e tipografia do design system</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/styles/_tokens.scss</code> <code>src/styles/_base.scss</code> <code>src/styles/_tipografia.scss</code> <code>src/styles/index.scss</code> <code>src/styles.scss</code></span>
         </div>
       </div>
@@ -77,7 +77,7 @@
         <div class="tarefa">
           <span class="tid">T-003</span>
           <span class="ttitulo">Shell de navegação com sidebar e topbar</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/app/presentation/layout/shell/shell.ts</code> <code>src/app/presentation/layout/shell/shell.spec.ts</code> <code>src/app/app.ts</code> <code>src/app/app.html</code> <code>src/app/app.scss</code> <code>src/app/app.spec.ts</code></span>
         </div>
       </div>
@@ -87,7 +87,7 @@
         <div class="tarefa">
           <span class="tid">T-004</span>
           <span class="ttitulo">Rotas da aplicação, raiz e página não encontrada</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>low</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>low</b></span>
           <span class="arquivos"><code>src/app/app.routes.ts</code> <code>src/app/app.routes.spec.ts</code> <code>src/app/presentation/features/nao-encontrado/nao-encontrado.ts</code></span>
         </div>
       </div></div>
@@ -101,7 +101,7 @@
         <div class="tarefa">
           <span class="tid">T-005</span>
           <span class="ttitulo">Store do investidor de contexto com persistência e revalidação</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>high</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>high</b></span>
           <span class="arquivos"><code>src/app/application/investidor-contexto.store.ts</code> <code>src/app/application/investidor-contexto.store.spec.ts</code></span>
         </div>
       </div>
@@ -111,7 +111,7 @@
         <div class="tarefa">
           <span class="tid">T-008</span>
           <span class="ttitulo">Configuração de HTTP, base da API e paginação</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>low</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>low</b></span>
           <span class="arquivos"><code>src/app/app.config.ts</code> <code>src/app/core/config/api.config.ts</code> <code>src/app/core/http/api-url-interceptor.ts</code> <code>src/app/core/http/http-params.ts</code> <code>src/app/domain/models/page.model.ts</code></span>
         </div>
       </div></div>
@@ -123,37 +123,37 @@
         <div class="tarefa">
           <span class="tid">T-002</span>
           <span class="ttitulo">Classes de controle, tabela e card</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/styles/_controles.scss</code> <code>src/styles/_tabela.scss</code> <code>src/styles/_card.scss</code></span>
         </div>
         <div class="tarefa">
           <span class="tid">T-006</span>
           <span class="ttitulo">Seletor de investidor na topbar</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/app/shared/components/seletor-investidor/seletor-investidor.ts</code> <code>src/app/shared/components/seletor-investidor/seletor-investidor.spec.ts</code></span>
         </div>
         <div class="tarefa">
           <span class="tid">T-007</span>
           <span class="ttitulo">Guard de contexto nas áreas que dependem de investidor</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/app/core/guards/investidor-contexto.guard.ts</code> <code>src/app/core/guards/investidor-contexto.guard.spec.ts</code></span>
         </div>
         <div class="tarefa">
           <span class="tid">T-009</span>
           <span class="ttitulo">Tradução de erro da API para a tela</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>high</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>high</b></span>
           <span class="arquivos"><code>src/app/core/http/http-error-interceptor.ts</code> <code>src/app/core/http/http-error-interceptor.spec.ts</code> <code>src/app/domain/models/api-error.model.ts</code></span>
         </div>
         <div class="tarefa">
           <span class="tid">T-010</span>
           <span class="ttitulo">Componentes compartilhados de estado e navegação</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>high</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>high</b></span>
           <span class="arquivos"><code>src/app/shared/components/skeleton-tabela/skeleton-tabela.ts</code> <code>src/app/shared/components/estado-vazio/estado-vazio.ts</code> <code>src/app/shared/components/card-erro/card-erro.ts</code> <code>src/app/shared/components/paginador/paginador.ts</code> <code>src/app/shared/components/modal-confirmacao/modal-confirmacao.ts</code> <code>src/app/shared/components/componentes-estado.spec.ts</code></span>
         </div>
         <div class="tarefa">
           <span class="tid">T-011</span>
           <span class="ttitulo">Frescor de cotação e badge de defasagem</span>
-          <span class="meta"><code>claude-sonnet-5</code> · esforço <b>medium</b></span>
+          <span class="meta"><code>gpt-5.6-terra</code> · esforço <b>medium</b></span>
           <span class="arquivos"><code>src/app/application/cotacao-frescor.ts</code> <code>src/app/shared/components/badge-defasagem/badge-defasagem.ts</code></span>
         </div></div></div>
     </section>

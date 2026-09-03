@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-02 23:47
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:04
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,15 +14,15 @@
 set -u
 set -o pipefail
 
-RUN_ID='api-externa-frontend-v1-fundacao-mtkqxav1'
+RUN_ID='api-externa-frontend-v1-fundacao-mtkrju9c'
 FEATURE='fundacao'
 BASE_BRANCH='spec/fundacao'
-ENGINE='.claude/skills/onp-spec-driven/scripts/onp-spec.mjs'
-CLAUDE_FLAGS=(--permission-mode acceptEdits --allowedTools 'Bash(git add:*),Bash(git commit:*),Bash(git status:*),Bash(git diff:*),Bash(git log:*),Bash(npx:*)')
-STREAM_FLAGS=(--output-format stream-json --verbose)
+ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
+CODEX_FLAGS=(--sandbox 'workspace-write')
+STREAM_FLAGS=(--json)
 FALHAS=""
 COM_GATE=1
-RESUMO_MODEL='claude-haiku-4-5'
+RESUMO_MODEL='gpt-5.6-luna'
 RESUMO_PID=""
 
 verde()    { printf '\033[32m%s\033[0m\n' "$*"; }
@@ -39,7 +39,7 @@ evento() { node "$ENGINE" evento --run "$RUN_ID" "$@" >/dev/null 2>&1 || true; }
 preparar_ambiente() {
   command -v git >/dev/null 2>&1 || falhar "git não encontrado"
   command -v node >/dev/null 2>&1 || falhar "node não encontrado"
-  command -v claude >/dev/null 2>&1 || falhar "Claude Code CLI (claude) não encontrado — instale-o ou siga o modo manual em plano-execucao.md"
+  command -v codex >/dev/null 2>&1 || falhar "Codex CLI (codex) não encontrado — instale-o ou siga o modo manual em plano-execucao.md"
   TOPLEVEL=$(git rev-parse --show-toplevel 2>/dev/null) || falhar "fora de um repositório git"
   cd "$TOPLEVEL" || exit 1
   # artefatos recém-gerados pelo `onp-spec plano` são sujeira esperada:
@@ -87,14 +87,16 @@ tentativa() { # $1=faixa — conta reexecuções (vai para o ledger)
   printf "%s" "$n"
 }
 
-# uma tarefa = uma sessão claude headless com contexto limpo.
+# uma tarefa = uma sessão codex exec headless com contexto limpo.
 # o JSONL da sessão vira o stream da tarefa no ledger
 rodar_tarefa() { # $1=escopo(faixa|seq) $2=T-xxx $3=prompt $4=modelo $5=esforço
   local chave="$1--$2"
   local stream="$STREAMS_DIR/$chave.jsonl"
   evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado executando --stream "$chave"
-  info "$2 — claude -p ($4 · $5) · stream: $chave"
-  if claude -p "$3" --model "$4" --effort "$5" "${STREAM_FLAGS[@]}" "${CLAUDE_FLAGS[@]}" > "$stream" 2>>"$LOG_DIR/$1.log"; then
+  info "$2 — codex exec ($4 · $5) · stream: $chave"
+  # --add-dir: o .git compartilhado dos worktrees mora no repo principal —
+  # sem ele o sandbox workspace-write bloquearia o commit da tarefa
+  if codex exec "$3" --model "$4" -c model_reasoning_effort="$5" "${STREAM_FLAGS[@]}" "${CODEX_FLAGS[@]}" --add-dir "$TOPLEVEL" > "$stream" 2>>"$LOG_DIR/$1.log"; then
     evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado concluida --stream "$chave"
     node "$ENGINE" stream-resumo "$RUN_ID" "$chave" 2>/dev/null || true
     return 0
@@ -130,17 +132,17 @@ marcar_concluidas() { # $@=T-xxx
 }
 
 # ── resumo geral de andamento: 1/min enquanto a execução roda ─────────
-# escrito por IA (claude -p, sem ferramentas) com fallback do motor; vai
+# escrito por IA (codex exec somente leitura) com fallback do motor; vai
 # para o terminal e para o ledger — o agente repassa o texto no chat.
 gerar_resumo() {
   local ctx ia
   ctx=$(node "$ENGINE" resumo "$FEATURE" --contexto 2>/dev/null) || ctx=""
   [ -n "$ctx" ] || return 0
-  ia=$(claude -p "Você narra, para o dono do produto, uma execução de tarefas de código em andamento. Estado mecânico:
+  ia=$(codex exec "Você narra, para o dono do produto, uma execução de tarefas de código em andamento. Estado mecânico:
 
 $ctx
 
-Escreva o RESUMO GERAL DE ANDAMENTO: um parágrafo único de 2 a 4 frases, em português simples, dizendo o que está acontecendo agora, o que já terminou, o que falhou e se o usuário precisa agir. Sem markdown, sem listas." --model "$RESUMO_MODEL" 2>/dev/null)
+Escreva o RESUMO GERAL DE ANDAMENTO: um parágrafo único de 2 a 4 frases, em português simples, dizendo o que está acontecendo agora, o que já terminou, o que falhou e se o usuário precisa agir. Sem markdown, sem listas." --model "$RESUMO_MODEL" --sandbox read-only --ephemeral 2>/dev/null)
   if [ -n "$ia" ]; then
     node "$ENGINE" resumo "$FEATURE" --gravar --origem ia --texto "$ia" >/dev/null 2>&1 || true
     printf '\n📣 resumo (IA): %s\n' "$ia"
@@ -188,7 +190,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' medium
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
   ) >> "$LOG_DIR/faixa-1.log" 2>&1
   local st=$?
   mesclar_faixa 'faixa-1' 'spec/fundacao-faixa-1' "$WT" "$st" || return 1
@@ -218,7 +220,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' medium
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium
   ) >> "$LOG_DIR/faixa-2.log" 2>&1
   local st=$?
   mesclar_faixa 'faixa-2' 'spec/fundacao-faixa-2' "$WT" "$st" || return 1
@@ -248,7 +250,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' low
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' low
   ) >> "$LOG_DIR/faixa-3.log" 2>&1
   local st=$?
   mesclar_faixa 'faixa-3' 'spec/fundacao-faixa-3' "$WT" "$st" || return 1
@@ -278,7 +280,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' high
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' high
   ) >> "$LOG_DIR/faixa-4.log" 2>&1
   local st=$?
   mesclar_faixa 'faixa-4' 'spec/fundacao-faixa-4' "$WT" "$st" || return 1
@@ -308,7 +310,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' low
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' low
   ) >> "$LOG_DIR/faixa-5.log" 2>&1
   local st=$?
   mesclar_faixa 'faixa-5' 'spec/fundacao-faixa-5' "$WT" "$st" || return 1
@@ -333,7 +335,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' medium >> "$LOG_DIR/seq.log" 2>&1; then
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
       git add -A && git commit -q -m 'T-002 fundacao: Classes de controle, tabela e card (auto-commit do plano)'
@@ -365,7 +367,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' medium >> "$LOG_DIR/seq.log" 2>&1; then
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
       git add -A && git commit -q -m 'T-006 fundacao: Seletor de investidor na topbar (auto-commit do plano)'
@@ -397,7 +399,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' medium >> "$LOG_DIR/seq.log" 2>&1; then
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
       git add -A && git commit -q -m 'T-007 fundacao: Guard de contexto nas áreas que dependem de investidor (auto-commit do plano)'
@@ -429,7 +431,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' high >> "$LOG_DIR/seq.log" 2>&1; then
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' high >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
       git add -A && git commit -q -m 'T-009 fundacao: Tradução de erro da API para a tela (auto-commit do plano)'
@@ -461,7 +463,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' high >> "$LOG_DIR/seq.log" 2>&1; then
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' high >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
       git add -A && git commit -q -m 'T-010 fundacao: Componentes compartilhados de estado e navegação (auto-commit do plano)'
@@ -493,7 +495,7 @@ Regras inegociáveis:
 - NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'claude-sonnet-5' medium >> "$LOG_DIR/seq.log" 2>&1; then
+- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' medium >> "$LOG_DIR/seq.log" 2>&1; then
     # commit de segurança se o agente esqueceu (rastreabilidade > perfeição)
     if [ -n "$(git status --porcelain)" ]; then
       git add -A && git commit -q -m 'T-011 fundacao: Frescor de cotação e badge de defasagem (auto-commit do plano)'

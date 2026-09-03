@@ -1,7 +1,7 @@
 {
-  "runId": "api-externa-frontend-v1-fundacao-mtkqxav1",
+  "runId": "api-externa-frontend-v1-fundacao-mtkrju9c",
   "feature": "fundacao",
-  "agent": "claude",
+  "agent": "codex",
   "modo": "paralelo",
   "paralelizar": [
     "T-001",
@@ -12,7 +12,7 @@
   ],
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-09-02 23:47",
+  "geradoEm": "2026-09-03 00:04",
   "branchTrabalho": "spec/fundacao",
   "baseDir": ".spec/features/fundacao",
   "specDir": ".spec",
@@ -38,7 +38,7 @@
         {
           "id": "T-001",
           "titulo": "Tokens, base e tipografia do design system",
-          "modelo": "claude-sonnet-5",
+          "modelo": "gpt-5.6-terra",
           "esforco": "medium",
           "arquivos": [
             "src/styles/_tokens.scss",
@@ -62,7 +62,7 @@
         {
           "id": "T-003",
           "titulo": "Shell de navegação com sidebar e topbar",
-          "modelo": "claude-sonnet-5",
+          "modelo": "gpt-5.6-terra",
           "esforco": "medium",
           "arquivos": [
             "src/app/presentation/layout/shell/shell.ts",
@@ -86,7 +86,7 @@
         {
           "id": "T-004",
           "titulo": "Rotas da aplicação, raiz e página não encontrada",
-          "modelo": "claude-sonnet-5",
+          "modelo": "gpt-5.6-terra",
           "esforco": "low",
           "arquivos": [
             "src/app/app.routes.ts",
@@ -108,7 +108,7 @@
         {
           "id": "T-005",
           "titulo": "Store do investidor de contexto com persistência e revalidação",
-          "modelo": "claude-sonnet-5",
+          "modelo": "gpt-5.6-terra",
           "esforco": "high",
           "arquivos": [
             "src/app/application/investidor-contexto.store.ts",
@@ -131,7 +131,7 @@
         {
           "id": "T-008",
           "titulo": "Configuração de HTTP, base da API e paginação",
-          "modelo": "claude-sonnet-5",
+          "modelo": "gpt-5.6-terra",
           "esforco": "low",
           "arquivos": [
             "src/app/app.config.ts",
@@ -153,7 +153,7 @@
     {
       "id": "T-002",
       "titulo": "Classes de controle, tabela e card",
-      "modelo": "claude-sonnet-5",
+      "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
         "src/styles/_controles.scss",
@@ -169,7 +169,7 @@
     {
       "id": "T-006",
       "titulo": "Seletor de investidor na topbar",
-      "modelo": "claude-sonnet-5",
+      "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
         "src/app/shared/components/seletor-investidor/seletor-investidor.ts",
@@ -183,7 +183,7 @@
     {
       "id": "T-007",
       "titulo": "Guard de contexto nas áreas que dependem de investidor",
-      "modelo": "claude-sonnet-5",
+      "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
         "src/app/core/guards/investidor-contexto.guard.ts",
@@ -197,7 +197,7 @@
     {
       "id": "T-009",
       "titulo": "Tradução de erro da API para a tela",
-      "modelo": "claude-sonnet-5",
+      "modelo": "gpt-5.6-terra",
       "esforco": "high",
       "arquivos": [
         "src/app/core/http/http-error-interceptor.ts",
@@ -213,7 +213,7 @@
     {
       "id": "T-010",
       "titulo": "Componentes compartilhados de estado e navegação",
-      "modelo": "claude-sonnet-5",
+      "modelo": "gpt-5.6-terra",
       "esforco": "high",
       "arquivos": [
         "src/app/shared/components/skeleton-tabela/skeleton-tabela.ts",
@@ -231,7 +231,7 @@
     {
       "id": "T-011",
       "titulo": "Frescor de cotação e badge de defasagem",
-      "modelo": "claude-sonnet-5",
+      "modelo": "gpt-5.6-terra",
       "esforco": "medium",
       "arquivos": [
         "src/app/application/cotacao-frescor.ts",
