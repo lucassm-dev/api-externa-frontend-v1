@@ -5,8 +5,7 @@
 Status: pendente | em-andamento | concluida
 (atalho: `onp-spec tarefa fundacao <T-xxx> <status>`)
 
-## T-001 — Tokens, base e tipografia do design system [pendente]
-
+## T-001 — Tokens, base e tipografia do design system [concluida]
 - Refs: AC-013, AC-015
 - Arquivos: src/styles/_tokens.scss, src/styles/_base.scss, src/styles/_tipografia.scss, src/styles/index.scss, src/styles.scss
 - Esforço: medio
