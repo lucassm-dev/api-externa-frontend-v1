@@ -1,12 +1,12 @@
 # Plano de execução — fundacao
 
-> gerado por `onp-spec plano` em 2026-09-03 00:25 — NÃO edite à mão;
-> mudou tasks.md ou a config? Regenere: `onp-spec plano fundacao --paralelizar T-001,T-003,T-004,T-005,T-008`
+> gerado por `onp-spec plano` em 2026-09-03 03:47 — NÃO edite à mão;
+> mudou tasks.md ou a config? Regenere: `onp-spec plano fundacao --paralelizar T-001,T-003,T-005,T-008`
 
 ## Resumo — o que vai acontecer
 
-- **11 tarefa(s) pendente(s)**: 5 em 5 faixa(s) paralela(s) + 6 sequencial(is)
-- **seleção do usuário**: paralelizar só T-001, T-003, T-004, T-005, T-008 — as demais rodam uma após a outra, ao final
+- **10 tarefa(s) pendente(s)**: 4 em 4 faixa(s) paralela(s) + 6 sequencial(is) (1 já concluída(s): T-004)
+- **seleção do usuário**: paralelizar só T-001, T-003, T-005, T-008 — as demais rodam uma após a outra, ao final
 - **1 faixa = 1 worktree + 1 branch + 1 janela de contexto limpa** — faixas não compartilham nenhum arquivo entre si
 - prefere outra seleção ou uma após a outra? Regenere com `onp-spec plano fundacao --paralelizar T-xxx,T-yyy` ou `--sequencial`
 - tudo acontece na branch de trabalho `spec/fundacao`; levar para a main é decisão sua
@@ -31,17 +31,11 @@
 
 | tarefa | título | modelo | esforço | arquivos |
 |---|---|---|---|---|
-| T-004 | Rotas da aplicação, raiz e página não encontrada | `gpt-5.6-terra` | low | `src/app/app.routes.ts`, `src/app/app.routes.spec.ts`, `src/app/presentation/features/nao-encontrado/nao-encontrado.ts` |
-
-### Onda 2 — faixa-4 ∥ faixa-5
-
-#### faixa-4 — branch `spec/fundacao-faixa-4` — worktree `../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-4`
-
-| tarefa | título | modelo | esforço | arquivos |
-|---|---|---|---|---|
 | T-005 | Store do investidor de contexto com persistência e revalidação | `gpt-5.6-terra` | high | `src/app/application/investidor-contexto.store.ts`, `src/app/application/investidor-contexto.store.spec.ts` |
 
-#### faixa-5 — branch `spec/fundacao-faixa-5` — worktree `../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-5`
+### Onda 2 — faixa-4
+
+#### faixa-4 — branch `spec/fundacao-faixa-4` — worktree `../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-4`
 
 | tarefa | título | modelo | esforço | arquivos |
 |---|---|---|---|---|

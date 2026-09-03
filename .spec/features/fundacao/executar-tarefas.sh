@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:25
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 03:47
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,11 +14,11 @@
 set -u
 set -o pipefail
 
-RUN_ID='api-externa-frontend-v1-fundacao-mtksa34w'
+RUN_ID='api-externa-frontend-v1-fundacao-mtkzhtva'
 FEATURE='fundacao'
 BASE_BRANCH='spec/fundacao'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
-CODEX_FLAGS=(--approve-for-me)
+CODEX_FLAGS=(--ignore-user-config --approve-for-me)
 STREAM_FLAGS=(--json)
 FALHAS=""
 COM_GATE=1
@@ -253,7 +253,7 @@ Regras inegociáveis:
   return 0
 }
 
-# ── faixa-3: T-004 ──
+# ── faixa-3: T-005 ──
 executar_faixa_3() {
   local WT="$WT_BASE-faixa-3"
   preparar_worktree 'faixa-3' 'spec/fundacao-faixa-3' "$WT" || return 1
@@ -261,38 +261,7 @@ executar_faixa_3() {
   : > "$LOG_DIR/faixa-3.log"
   (
     cd "$WT" || exit 9
-    rodar_tarefa 'faixa-3' 'T-004' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
-Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
-A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
-
-Sua tarefa (somente ela):
-T-004 — "Rotas da aplicação, raiz e página não encontrada"
-  critérios/refs: AC-002 (A rota raiz leva ao dashboard), AC-003 (Endereço inexistente informa sem derrubar a navegação)
-  arquivos permitidos (e seus testes): src/app/app.routes.ts, src/app/app.routes.spec.ts, src/app/presentation/features/nao-encontrado/nao-encontrado.ts
-  mensagem de commit: "T-004 fundacao: Rotas da aplicação, raiz e página não encontrada"
-
-Regras inegociáveis:
-- Todo critério de aceite referenciado vira teste com @spec:AC-xxx no título.
-- NUNCA enfraqueça, pule (skip/todo) ou apague um teste para passar — teste pulado não é prova e o audit acusa.
-- Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
-- NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
-- Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' low
-  ) >> "$LOG_DIR/faixa-3.log" 2>&1
-  local st=$?
-  mesclar_faixa 'faixa-3' 'spec/fundacao-faixa-3' "$WT" "$st" || return 1
-  marcar_concluidas T-004
-  return 0
-}
-
-# ── faixa-4: T-005 ──
-executar_faixa_4() {
-  local WT="$WT_BASE-faixa-4"
-  preparar_worktree 'faixa-4' 'spec/fundacao-faixa-4' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
-  : > "$LOG_DIR/faixa-4.log"
-  (
-    cd "$WT" || exit 9
-    rodar_tarefa 'faixa-4' 'T-005' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
+    rodar_tarefa 'faixa-3' 'T-005' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
 A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
@@ -308,22 +277,22 @@ Regras inegociáveis:
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' high
-  ) >> "$LOG_DIR/faixa-4.log" 2>&1
+  ) >> "$LOG_DIR/faixa-3.log" 2>&1
   local st=$?
-  mesclar_faixa 'faixa-4' 'spec/fundacao-faixa-4' "$WT" "$st" || return 1
+  mesclar_faixa 'faixa-3' 'spec/fundacao-faixa-3' "$WT" "$st" || return 1
   marcar_concluidas T-005
   return 0
 }
 
-# ── faixa-5: T-008 ──
-executar_faixa_5() {
-  local WT="$WT_BASE-faixa-5"
-  preparar_worktree 'faixa-5' 'spec/fundacao-faixa-5' "$WT" || return 1
-  evento --tipo faixa --faixa 'faixa-5' --estado executando --tentativa "$(tentativa 'faixa-5')"
-  : > "$LOG_DIR/faixa-5.log"
+# ── faixa-4: T-008 ──
+executar_faixa_4() {
+  local WT="$WT_BASE-faixa-4"
+  preparar_worktree 'faixa-4' 'spec/fundacao-faixa-4' "$WT" || return 1
+  evento --tipo faixa --faixa 'faixa-4' --estado executando --tentativa "$(tentativa 'faixa-4')"
+  : > "$LOG_DIR/faixa-4.log"
   (
     cd "$WT" || exit 9
-    rodar_tarefa 'faixa-5' 'T-008' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
+    rodar_tarefa 'faixa-4' 'T-008' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
 A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
@@ -339,9 +308,9 @@ Regras inegociáveis:
 - Rode os testes localmente com `npx ng test --reporters=tap --watch=false` até passarem.
 - NÃO edite tasks.md, NÃO rode onp-spec verify/audit e NÃO toque em outras tarefas — o orquestrador cuida disso.
 - Ao final de CADA tarefa: `git add` só no que você tocou e um commit próprio.' 'gpt-5.6-terra' low
-  ) >> "$LOG_DIR/faixa-5.log" 2>&1
+  ) >> "$LOG_DIR/faixa-4.log" 2>&1
   local st=$?
-  mesclar_faixa 'faixa-5' 'spec/fundacao-faixa-5' "$WT" "$st" || return 1
+  mesclar_faixa 'faixa-4' 'spec/fundacao-faixa-4' "$WT" "$st" || return 1
   marcar_concluidas T-008
   return 0
 }
@@ -606,12 +575,10 @@ executar_tudo() {
   if ! wait "$PID_FAIXA_2"; then FALHAS="$FALHAS faixa-2"; fi
   if ! wait "$PID_FAIXA_3"; then FALHAS="$FALHAS faixa-3"; fi
   if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar 'onda 1'; fi
-  # onda 2: faixa-4 ∥ faixa-5
-  info "onda 2: faixa-4 ∥ faixa-5 — janelas limpas em paralelo"
+  # onda 2: faixa-4
+  info "onda 2: faixa-4 — janelas limpas em paralelo"
   executar_faixa_4 & PID_FAIXA_4=$!
-  executar_faixa_5 & PID_FAIXA_5=$!
   if ! wait "$PID_FAIXA_4"; then FALHAS="$FALHAS faixa-4"; fi
-  if ! wait "$PID_FAIXA_5"; then FALHAS="$FALHAS faixa-5"; fi
   if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar 'onda 2'; fi
   executar_seq_T_002 || true
   executar_seq_T_006 || true
@@ -626,9 +593,8 @@ listar() {
   echo "execução: $RUN_ID (feature $FEATURE, branch $BASE_BRANCH)"
   echo "  faixa-1  onda 1  T-001"
   echo "  faixa-2  onda 1  T-003"
-  echo "  faixa-3  onda 1  T-004"
-  echo "  faixa-4  onda 2  T-005"
-  echo "  faixa-5  onda 2  T-008"
+  echo "  faixa-3  onda 1  T-005"
+  echo "  faixa-4  onda 2  T-008"
   echo "  seq       T-002 (sequencial)"
   echo "  seq       T-006 (sequencial)"
   echo "  seq       T-007 (sequencial)"
@@ -669,7 +635,6 @@ case "$MODO" in
       faixa-2) evento --tipo inicio --escopo "faixa:faixa-2"; iniciar_resumos; executar_faixa_2 || true; encerrar "faixa:faixa-2" ;;
       faixa-3) evento --tipo inicio --escopo "faixa:faixa-3"; iniciar_resumos; executar_faixa_3 || true; encerrar "faixa:faixa-3" ;;
       faixa-4) evento --tipo inicio --escopo "faixa:faixa-4"; iniciar_resumos; executar_faixa_4 || true; encerrar "faixa:faixa-4" ;;
-      faixa-5) evento --tipo inicio --escopo "faixa:faixa-5"; iniciar_resumos; executar_faixa_5 || true; encerrar "faixa:faixa-5" ;;
       *) falhar "faixa desconhecida: '$ALVO' — veja as disponíveis com --listar" ;;
     esac ;;
   seq)

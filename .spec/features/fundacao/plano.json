@@ -1,18 +1,17 @@
 {
-  "runId": "api-externa-frontend-v1-fundacao-mtksa34w",
+  "runId": "api-externa-frontend-v1-fundacao-mtkzhtva",
   "feature": "fundacao",
   "agent": "codex",
   "modo": "paralelo",
   "paralelizar": [
     "T-001",
     "T-003",
-    "T-004",
     "T-005",
     "T-008"
   ],
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-09-03 00:25",
+  "geradoEm": "2026-09-03 03:47",
   "branchTrabalho": "spec/fundacao",
   "baseDir": ".spec/features/fundacao",
   "specDir": ".spec",
@@ -25,8 +24,7 @@
       "faixa-3"
     ],
     [
-      "faixa-4",
-      "faixa-5"
+      "faixa-4"
     ]
   ],
   "faixas": [
@@ -84,28 +82,6 @@
       "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-3",
       "tarefas": [
         {
-          "id": "T-004",
-          "titulo": "Rotas da aplicação, raiz e página não encontrada",
-          "modelo": "gpt-5.6-terra",
-          "esforco": "low",
-          "arquivos": [
-            "src/app/app.routes.ts",
-            "src/app/app.routes.spec.ts",
-            "src/app/presentation/features/nao-encontrado/nao-encontrado.ts"
-          ],
-          "refs": [
-            "AC-002",
-            "AC-003"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "faixa-4",
-      "branch": "spec/fundacao-faixa-4",
-      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-4",
-      "tarefas": [
-        {
           "id": "T-005",
           "titulo": "Store do investidor de contexto com persistência e revalidação",
           "modelo": "gpt-5.6-terra",
@@ -124,9 +100,9 @@
       ]
     },
     {
-      "id": "faixa-5",
-      "branch": "spec/fundacao-faixa-5",
-      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-5",
+      "id": "faixa-4",
+      "branch": "spec/fundacao-faixa-4",
+      "worktree": "../onp-worktrees/api-externa-frontend-v1-fundacao-faixa-4",
       "tarefas": [
         {
           "id": "T-008",
@@ -246,6 +222,8 @@
       ]
     }
   ],
-  "concluidas": [],
+  "concluidas": [
+    "T-004"
+  ],
   "avisos": []
 }
