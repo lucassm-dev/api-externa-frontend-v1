@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:04
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:16
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,7 +14,7 @@
 set -u
 set -o pipefail
 
-RUN_ID='api-externa-frontend-v1-fundacao-mtkrju9c'
+RUN_ID='api-externa-frontend-v1-fundacao-mtkryf4p'
 FEATURE='fundacao'
 BASE_BRANCH='spec/fundacao'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
@@ -92,11 +92,20 @@ tentativa() { # $1=faixa — conta reexecuções (vai para o ledger)
 rodar_tarefa() { # $1=escopo(faixa|seq) $2=T-xxx $3=prompt $4=modelo $5=esforço
   local chave="$1--$2"
   local stream="$STREAMS_DIR/$chave.jsonl"
+  local head_antes
+  head_antes=$(git rev-parse HEAD)
   evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado executando --stream "$chave"
   info "$2 — codex exec ($4 · $5) · stream: $chave"
   # --add-dir: o .git compartilhado dos worktrees mora no repo principal —
   # sem ele o sandbox workspace-write bloquearia o commit da tarefa
   if codex exec "$3" --model "$4" -c model_reasoning_effort="$5" "${STREAM_FLAGS[@]}" "${CODEX_FLAGS[@]}" --add-dir "$TOPLEVEL" > "$stream" 2>>"$LOG_DIR/$1.log"; then
+    if [ "$(git rev-parse HEAD)" = "$head_antes" ] && [ -z "$(git status --porcelain)" ]; then
+      printf "executor: %s terminou sem alterar nem commitar arquivos; tratando como falha
+" "$2" >> "$LOG_DIR/$1.log"
+      evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado falhou --stream "$chave"
+      node "$ENGINE" stream-resumo "$RUN_ID" "$chave" 2>/dev/null || true
+      return 1
+    fi
     evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado concluida --stream "$chave"
     node "$ENGINE" stream-resumo "$RUN_ID" "$chave" 2>/dev/null || true
     return 0
@@ -111,6 +120,16 @@ mesclar_faixa() { # $1=faixa $2=branch $3=worktree $4=exit-da-faixa
     evento --tipo faixa --faixa "$1" --estado falhou
     vermelho "✘ $1 falhou (log: $LOG_DIR/$1.log) — worktree mantido para inspeção: $3"
     amarelo "  reexecute só ela: bash .spec/features/fundacao/executar-tarefas.sh --faixa $1"
+    FALHAS="$FALHAS $1"; return 1
+  fi
+  if [ -n "$(git -C "$3" status --porcelain)" ]; then
+    evento --tipo faixa --faixa "$1" --estado falhou
+    vermelho "✘ $1 terminou com alterações sem commit no worktree: $3"
+    FALHAS="$FALHAS $1"; return 1
+  fi
+  if [ "$(git rev-list --count "$BASE_BRANCH..$2")" -eq 0 ]; then
+    evento --tipo faixa --faixa "$1" --estado falhou
+    vermelho "✘ $1 terminou sem commit exclusivo; nenhuma implementação será marcada como concluída"
     FALHAS="$FALHAS $1"; return 1
   fi
   evento --tipo faixa --faixa "$1" --estado mesclando
@@ -178,6 +197,7 @@ executar_faixa_1() {
     cd "$WT" || exit 9
     rodar_tarefa 'faixa-1' 'T-001' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-001 — "Tokens, base e tipografia do design system"
@@ -208,6 +228,7 @@ executar_faixa_2() {
     cd "$WT" || exit 9
     rodar_tarefa 'faixa-2' 'T-003' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-003 — "Shell de navegação com sidebar e topbar"
@@ -238,6 +259,7 @@ executar_faixa_3() {
     cd "$WT" || exit 9
     rodar_tarefa 'faixa-3' 'T-004' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-004 — "Rotas da aplicação, raiz e página não encontrada"
@@ -268,6 +290,7 @@ executar_faixa_4() {
     cd "$WT" || exit 9
     rodar_tarefa 'faixa-4' 'T-005' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-005 — "Store do investidor de contexto com persistência e revalidação"
@@ -298,6 +321,7 @@ executar_faixa_5() {
     cd "$WT" || exit 9
     rodar_tarefa 'faixa-5' 'T-008' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-008 — "Configuração de HTTP, base da API e paginação"
@@ -323,6 +347,7 @@ executar_seq_T_002() {
   info 'sequencial T-002 — Classes de controle, tabela e card'
   if rodar_tarefa seq 'T-002' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-002 — "Classes de controle, tabela e card"
@@ -355,6 +380,7 @@ executar_seq_T_006() {
   info 'sequencial T-006 — Seletor de investidor na topbar'
   if rodar_tarefa seq 'T-006' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-006 — "Seletor de investidor na topbar"
@@ -387,6 +413,7 @@ executar_seq_T_007() {
   info 'sequencial T-007 — Guard de contexto nas áreas que dependem de investidor'
   if rodar_tarefa seq 'T-007' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-007 — "Guard de contexto nas áreas que dependem de investidor"
@@ -419,6 +446,7 @@ executar_seq_T_009() {
   info 'sequencial T-009 — Tradução de erro da API para a tela'
   if rodar_tarefa seq 'T-009' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-009 — "Tradução de erro da API para a tela"
@@ -451,6 +479,7 @@ executar_seq_T_010() {
   info 'sequencial T-010 — Componentes compartilhados de estado e navegação'
   if rodar_tarefa seq 'T-010' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-010 — "Componentes compartilhados de estado e navegação"
@@ -483,6 +512,7 @@ executar_seq_T_011() {
   info 'sequencial T-011 — Frescor de cotação e badge de defasagem'
   if rodar_tarefa seq 'T-011' 'Você executa UMA tarefa da feature "fundacao" (fluxo onp-spec, spec-anchored).
 Leia primeiro: .spec/features/fundacao/spec.md, .spec/features/fundacao/tasks.md e .spec/constituicao.md.
+A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.
 
 Sua tarefa (somente ela):
 T-011 — "Frescor de cotação e badge de defasagem"

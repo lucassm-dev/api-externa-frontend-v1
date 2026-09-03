@@ -334,6 +334,7 @@ export function promptTarefa(plan, t) {
   return [
     `Você executa UMA tarefa da feature "${plan.feature}" (fluxo onp-spec, spec-anchored).`,
     `Leia primeiro: ${plan.baseDir}/spec.md, ${plan.baseDir}/tasks.md e .spec/constituicao.md.`,
+    'A especificação, o desenho e este plano de execução já foram aprovados pelo usuário. A etapa de brainstorming está concluída: NÃO peça nova confirmação e implemente agora.',
     '',
     'Sua tarefa (somente ela):',
     ...descreveTarefa(plan, t),
@@ -829,6 +830,8 @@ export function renderPlanoSh(plan) {
   P('rodar_tarefa() { # $1=escopo(faixa|seq) $2=T-xxx $3=prompt $4=modelo $5=esforço');
   P('  local chave="$1--$2"');
   P('  local stream="$STREAMS_DIR/$chave.jsonl"');
+  P('  local head_antes');
+  P('  head_antes=$(git rev-parse HEAD)');
   P('  evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado executando --stream "$chave"');
   if (codex) {
     P('  info "$2 — codex exec ($4 · $5) · stream: $chave"');
@@ -844,6 +847,12 @@ export function renderPlanoSh(plan) {
     P('  info "$2 — claude -p ($4 · $5) · stream: $chave"');
     P('  if claude -p "$3" --model "$4" --effort "$5" "${STREAM_FLAGS[@]}" "${CLAUDE_FLAGS[@]}" > "$stream" 2>>"$LOG_DIR/$1.log"; then');
   }
+  P('    if [ "$(git rev-parse HEAD)" = "$head_antes" ] && [ -z "$(git status --porcelain)" ]; then');
+  P('      printf "executor: %s terminou sem alterar nem commitar arquivos; tratando como falha\n" "$2" >> "$LOG_DIR/$1.log"');
+  P('      evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado falhou --stream "$chave"');
+  P('      node "$ENGINE" stream-resumo "$RUN_ID" "$chave" 2>/dev/null || true');
+  P('      return 1');
+  P('    fi');
   P('    evento --tipo tarefa --tarefa "$2" --faixa "$1" --estado concluida --stream "$chave"');
   P('    node "$ENGINE" stream-resumo "$RUN_ID" "$chave" 2>/dev/null || true');
   P('    return 0');
@@ -858,6 +867,16 @@ export function renderPlanoSh(plan) {
   P('    evento --tipo faixa --faixa "$1" --estado falhou');
   P('    vermelho "✘ $1 falhou (log: $LOG_DIR/$1.log) — worktree mantido para inspeção: $3"');
   P(`    amarelo "  reexecute só ela: bash ${plan.baseDir}/executar-tarefas.sh --faixa $1"`);
+  P('    FALHAS="$FALHAS $1"; return 1');
+  P('  fi');
+  P('  if [ -n "$(git -C "$3" status --porcelain)" ]; then');
+  P('    evento --tipo faixa --faixa "$1" --estado falhou');
+  P('    vermelho "✘ $1 terminou com alterações sem commit no worktree: $3"');
+  P('    FALHAS="$FALHAS $1"; return 1');
+  P('  fi');
+  P('  if [ "$(git rev-list --count "$BASE_BRANCH..$2")" -eq 0 ]; then');
+  P('    evento --tipo faixa --faixa "$1" --estado falhou');
+  P('    vermelho "✘ $1 terminou sem commit exclusivo; nenhuma implementação será marcada como concluída"');
   P('    FALHAS="$FALHAS $1"; return 1');
   P('  fi');
   P('  evento --tipo faixa --faixa "$1" --estado mesclando');

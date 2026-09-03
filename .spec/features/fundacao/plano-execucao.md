@@ -1,6 +1,6 @@
 # Plano de execução — fundacao
 
-> gerado por `onp-spec plano` em 2026-09-03 00:04 — NÃO edite à mão;
+> gerado por `onp-spec plano` em 2026-09-03 00:16 — NÃO edite à mão;
 > mudou tasks.md ou a config? Regenere: `onp-spec plano fundacao --paralelizar T-001,T-003,T-004,T-005,T-008`
 
 ## Resumo — o que vai acontecer
