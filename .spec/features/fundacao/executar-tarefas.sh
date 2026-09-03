@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:23
+# executar-tarefas.sh — gerado por `onp-spec plano fundacao` em 2026-09-03 00:25
 # NÃO edite à mão: mudou tasks.md ou a config, regenere o plano.
 #
 # uso:
@@ -14,11 +14,11 @@
 set -u
 set -o pipefail
 
-RUN_ID='api-externa-frontend-v1-fundacao-mtks8aay'
+RUN_ID='api-externa-frontend-v1-fundacao-mtksa34w'
 FEATURE='fundacao'
 BASE_BRANCH='spec/fundacao'
 ENGINE='.agents/skills/onp-spec-driven/scripts/onp-spec.mjs'
-CODEX_FLAGS=(--sandbox 'workspace-write' --approve-for-me)
+CODEX_FLAGS=(--approve-for-me)
 STREAM_FLAGS=(--json)
 FALHAS=""
 COM_GATE=1
@@ -602,15 +602,17 @@ executar_tudo() {
   executar_faixa_1 & PID_FAIXA_1=$!
   executar_faixa_2 & PID_FAIXA_2=$!
   executar_faixa_3 & PID_FAIXA_3=$!
-  wait "$PID_FAIXA_1" || true
-  wait "$PID_FAIXA_2" || true
-  wait "$PID_FAIXA_3" || true
+  if ! wait "$PID_FAIXA_1"; then FALHAS="$FALHAS faixa-1"; fi
+  if ! wait "$PID_FAIXA_2"; then FALHAS="$FALHAS faixa-2"; fi
+  if ! wait "$PID_FAIXA_3"; then FALHAS="$FALHAS faixa-3"; fi
+  if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar 'onda 1'; fi
   # onda 2: faixa-4 ∥ faixa-5
   info "onda 2: faixa-4 ∥ faixa-5 — janelas limpas em paralelo"
   executar_faixa_4 & PID_FAIXA_4=$!
   executar_faixa_5 & PID_FAIXA_5=$!
-  wait "$PID_FAIXA_4" || true
-  wait "$PID_FAIXA_5" || true
+  if ! wait "$PID_FAIXA_4"; then FALHAS="$FALHAS faixa-4"; fi
+  if ! wait "$PID_FAIXA_5"; then FALHAS="$FALHAS faixa-5"; fi
+  if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar 'onda 2'; fi
   executar_seq_T_002 || true
   executar_seq_T_006 || true
   executar_seq_T_007 || true

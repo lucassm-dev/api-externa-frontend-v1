@@ -1,5 +1,5 @@
 {
-  "runId": "api-externa-frontend-v1-fundacao-mtks8aay",
+  "runId": "api-externa-frontend-v1-fundacao-mtksa34w",
   "feature": "fundacao",
   "agent": "codex",
   "modo": "paralelo",
@@ -12,7 +12,7 @@
   ],
   "modeloForcado": null,
   "esforcoForcado": null,
-  "geradoEm": "2026-09-03 00:23",
+  "geradoEm": "2026-09-03 00:25",
   "branchTrabalho": "spec/fundacao",
   "baseDir": ".spec/features/fundacao",
   "specDir": ".spec",

@@ -740,7 +740,7 @@ export function renderPlanoSh(plan) {
   P(`BASE_BRANCH=${shq(plan.branchTrabalho)}`);
   P(`ENGINE=${shq(plan.engine)}`);
   if (codex) {
-    P(`CODEX_FLAGS=(--sandbox ${shq(plan.cfg.sandbox || 'workspace-write')} --approve-for-me)`);
+    P('CODEX_FLAGS=(--approve-for-me)');
     P('STREAM_FLAGS=(--json)');
   } else if (cursor) {
     P('# --force: sem ele o modo print do Cursor só propõe alterações (não escreve).');
@@ -1054,8 +1054,9 @@ export function renderPlanoSh(plan) {
       P(`  executar_${fn(fx.id)} & PID_${fn(fx.id).toUpperCase()}=$!`);
     }
     for (const fx of onda) {
-      P(`  wait "$PID_${fn(fx.id).toUpperCase()}" || true`);
+      P(`  if ! wait "$PID_${fn(fx.id).toUpperCase()}"; then FALHAS="$FALHAS ${fx.id}"; fi`);
     }
+    P(`  if [ -n "$FALHAS" ]; then COM_GATE=0; encerrar ${shq(`onda ${oi + 1}`)}; fi`);
   });
   for (const t of plan.sequenciais) P(`  executar_seq_${fn(t.id)} || true`);
   P('  encerrar tudo');
