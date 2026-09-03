@@ -35,8 +35,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: alto
 - Notas: único estado global da aplicação. Persiste em `localStorage` e revalida na abertura contra a listagem de investidores, não contra a busca por identificador — a busca por identificador não filtra inativos e deixaria o app preso num contexto morto. Trocar de investidor invalida os dados das facades dependentes.
 
-## T-006 — Seletor de investidor na topbar [pendente]
-
+## T-006 — Seletor de investidor na topbar [concluida]
 - Refs: AC-004, AC-009
 - Arquivos: src/app/shared/components/seletor-investidor/seletor-investidor.ts, src/app/shared/components/seletor-investidor/seletor-investidor.spec.ts
 - Esforço: medio
