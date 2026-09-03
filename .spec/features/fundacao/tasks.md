@@ -11,8 +11,7 @@ Status: pendente | em-andamento | concluida
 - Esforço: medio
 - Notas: cor, tipografia, espaço e raio das tabelas do design system; foco visível no reset; a classe `.num` com `tabular-nums` é o que sustenta o alinhamento das colunas numéricas. Base de todas as demais tarefas de tela.
 
-## T-002 — Classes de controle, tabela e card [pendente]
-
+## T-002 — Classes de controle, tabela e card [concluida]
 - Refs: AC-013, AC-014, AC-015
 - Arquivos: src/styles/_controles.scss, src/styles/_tabela.scss, src/styles/_card.scss
 - Esforço: medio
