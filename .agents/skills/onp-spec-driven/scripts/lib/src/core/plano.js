@@ -740,7 +740,11 @@ export function renderPlanoSh(plan) {
   P(`BASE_BRANCH=${shq(plan.branchTrabalho)}`);
   P(`ENGINE=${shq(plan.engine)}`);
   if (codex) {
-    P('CODEX_FLAGS=(--approve-for-me)');
+    // A configuracao pessoal pode definir sandbox_mode. O CLI atual recusa
+    // --approve-for-me quando um sandbox tambem foi herdado; isolar somente a
+    // configuracao do usuario preserva auth, regras do repositorio e o sandbox
+    // workspace-write aplicado pelo proprio --approve-for-me.
+    P('CODEX_FLAGS=(--ignore-user-config --approve-for-me)');
     P('STREAM_FLAGS=(--json)');
   } else if (cursor) {
     P('# --force: sem ele o modo print do Cursor só propõe alterações (não escreve).');
