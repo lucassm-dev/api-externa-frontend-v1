@@ -5,22 +5,19 @@
 Status: pendente | em-andamento | concluida
 (atalho: `onp-spec tarefa investidores <T-xxx> <status>`)
 
-## T-012 — Contrato e repositório HTTP de investidores [pendente]
-
+## T-012 — Contrato e repositório HTTP de investidores [concluida]
 - Refs: AC-016, AC-020, AC-023
 - Arquivos: src/app/domain/models/investidor.model.ts, src/app/domain/ports/investidor-repository.port.ts, src/app/infra/http/investidor-http.repository.ts
 - Esforço: baixo
 - Notas: depende de T-008. O CPF entra no cadastro e nunca volta na resposta — o modelo de leitura não tem esse campo. Não existe endpoint de edição. A exclusão é lógica.
 
-## T-013 — Facade de investidores [pendente]
-
+## T-013 — Facade de investidores [concluida]
 - Refs: AC-016, AC-020, AC-021, AC-023
 - Arquivos: src/app/application/investidores.facade.ts
 - Esforço: medio
 - Notas: depende de T-012. Guarda dados, carregando e erro em signals e recarrega a cada entrada na rota. É também a fonte da listagem que o store de contexto usa para revalidar.
 
-## T-014 — Listagem de investidores com paginação, vazio e escolha de contexto [pendente]
-
+## T-014 — Listagem de investidores com paginação, vazio e escolha de contexto [concluida]
 - Refs: AC-020, AC-021, AC-022
 - Arquivos: src/app/presentation/features/investidores/investidores-page.ts
 - Esforço: medio

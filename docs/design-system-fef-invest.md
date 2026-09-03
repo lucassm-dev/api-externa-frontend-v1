@@ -1,4 +1,4 @@
-# FEF Invest — Design System
+\# FEF Invest — Design System
 
 Documento de regras de interface. Toda tela do sistema segue isto. Quando houver dúvida entre este documento e uma referência visual, este documento vence.
 
